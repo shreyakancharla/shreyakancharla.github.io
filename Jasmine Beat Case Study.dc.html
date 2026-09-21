@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  [data-shell] { --rail: 0px; }
+  body { margin: 0; background: #FFFFFF; background-image: linear-gradient(178deg, #F7F4F8 0%, #FCFBFC 34%, #FFFFFF 62%); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%; color: #17181A; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #17181A; text-decoration: none; }
+  a:hover { color: #57554F; }
+  ::selection { background: #EFE9F8; }
+  @media (max-width: 560px) { [data-hide-sm] { display: none !important; } [data-brandline] { font-size: 18px !important; } }
+  #rail { display: none; }
+  #rail a { color: #6E6C66; }
+  #rail a:hover { color: #17181A; }
+  #rail a:hover [data-tick] { background: #17181A; }
+  #rail [data-label] { display: none; opacity: 0; transform: translateX(-4px); transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.3,1); }
+  @media (min-width: 620px) {
+    #rail { display: flex; }
+    [data-shell] { --rail: 46px; padding-left: calc(46px + clamp(20px,4vw,56px)) !important; }
+  }
+  @media (min-width: 620px) and (max-width: 1551.98px) {
+    #rail a { position: relative; }
+    #rail [data-label] { display: block; position: absolute; left: 26px; top: 50%; opacity: 0; transform: translate(-4px, -50%); padding: 5px 10px; border-radius: 7px; background: #17181A; color: #FBFBF9; font-size: 11.5px; pointer-events: none; box-shadow: 0 8px 20px -12px rgba(23,24,26,.6); }
+    #rail a:hover [data-label], #rail a:focus-visible [data-label] { opacity: 1; transform: translate(0, -50%); }
+  }
+  @media (min-width: 1180px) {
+    #rail { left: calc(50% - 586px) !important; }
+    [data-shell] { --rail: 0px; padding-left: clamp(20px,4vw,56px) !important; }
+  }
+  @media (min-width: 1552px) {
+    #rail { width: 212px !important; left: calc(50% - 776px) !important; }
+    #rail [data-label] { display: block; }
+    #rail a[data-active] [data-label] { opacity: 1; transform: none; color: #17181A; }
+    #rail:hover [data-label], #rail:focus-within [data-label] { opacity: 1; transform: none; }
+  }
+</style>
+</helmet>
+
+<nav id="rail" aria-label="Sections" style="position:fixed;top:50%;transform:translateY(-50%);left:max(12px, calc(50% - 540px));width:26px;flex-direction:column;gap:2px;z-index:9">
+  <a href="#j1" data-rail="j1" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">01 The Work</span>
+  </a>
+  <a href="#j2" data-rail="j2" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">02 The Brief</span>
+  </a>
+  <a href="#j3" data-rail="j3" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">03 The Problem</span>
+  </a>
+  <a href="#j4" data-rail="j4" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">04 What I Learned</span>
+  </a>
+  <a href="#j5" data-rail="j5" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">05 Key design moments</span>
+  </a>
+  <a href="#j6" data-rail="j6" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">06 The handoff</span>
+  </a>
+  <a href="#j7" data-rail="j7" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">07 What I Measured</span>
+  </a>
+  <a href="#j8" data-rail="j8" style="display:flex;align-items:center;gap:14px;min-height:22px">
+    <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+    <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">08 What I'd Do Differently</span>
+  </a>
+</nav>
+
+<div data-shell="" style="max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+
+  <nav style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid #E9E8EB;position:sticky;top:0;background:rgba(250,248,251,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="Portfolio.dc.html#work" aria-label="Other case studies" style="display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 11px;margin-right:2px;border:1px solid #E1DEE6;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-.01em;color:#4E4C47;background:#FFFFFF" style-hover="background:#F6F1F8;color:#5B4187;borderColor:#D8CDE4"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>Other case studies</a>
+      <a href="Portfolio.dc.html" style="font-size:14px;letter-spacing:-.01em;font-weight:700">Shreya</a>
+      <span data-brandline="" style="font-family:Caveat,cursive;font-size:22px;font-weight:600;letter-spacing:0;line-height:1;color:#6B4E9B;transform:translateY(1px)">Human-Centered Designer</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:26px;font-size:14px;letter-spacing:-.01em;font-weight:500">
+      <a href="Portfolio.dc.html#work">Work</a>
+      <a href="Portfolio.dc.html#about">About</a>
+      <a href="https://docs.google.com/document/d/1oUWtZNwBcNCkYKSSwn7upzmY2ENZkqafltgQavu4DFg/edit?usp=sharing" target="_blank" rel="noopener">Resume</a>
+      <a href="mailto:skancharla7@utexas.edu">Contact</a>
+    </div>
+  </nav>
+
+  <header style="padding:clamp(52px,10vh,112px) 0 clamp(32px,5vh,56px)">
+    <p style="margin:0 0 26px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j1">01 — The Work</p>
+    <h1 style="margin:0;max-width:26ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-0.035em;text-wrap:pretty">An accessibility-first redesign for Jasmine's Beat</h1>
+    <p style="margin:30px 0 0;max-width:54ch;font-size:15.5px;line-height:1.65;color:#4E4C47">An adaptive dance organisation whose own site excluded the communities it serves. I built the token architecture, the component states and the annotations that make those states legible to a screen reader, a keyboard and a voice command.</p>
+  </header>
+
+  <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+    <figure style="margin:0 0 clamp(44px,7vh,88px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:clamp(10px,1.6vw,20px)">
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid #E7E5EA;border-radius:10px;overflow:hidden;background:#fff">
+          <img src="assets/jb-cover-home.png" alt="Redesigned Jasmine's Beat homepage: Empowering people to embrace the power of dance, with a captioned video and audience cards" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top">
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid #E7E5EA;border-radius:10px;overflow:hidden;background:#fff">
+          <img src="assets/jb-cover-classes.png" alt="Find a Class: session, location and age filters, an accessibility filter row, and class cards showing price, schedule and registration state" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top">
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;border:1px solid #E7E5EA;border-radius:10px;overflow:hidden;background:#fff">
+          <img src="assets/jb-cover-instructors.png" alt="Instructor directory: search by name or style, accessibility filters, and instructor cards listing accessibility training" style="display:block;width:100%;height:100%;object-fit:cover;object-position:top">
+        </div>
+      </div>
+      <figcaption style="margin-top:12px;font-size:13px;line-height:1.5;color:#6E6C66">Three of the redesigned screens: the homepage, the class finder with accessibility filters, and the instructor directory.</figcaption>
+    </figure>
+  </sc-if>
+
+  <section style="padding:0 0 clamp(48px,8vh,96px);border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j2">02 — The Brief</p>
+    <div style="display:flex;flex-direction:column;gap:14px;padding-left:clamp(16px,2vw,24px);border-left:2px solid #6B46C8">
+      <p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B46C8">Role — UX Designer</p>
+      <p style="margin:0;max-width:46ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(18px,2vw,23px);line-height:1.4;letter-spacing:-0.02em;color:#17181A;text-wrap:pretty">I owned the design system: token architecture, the component sticker sheet, focus order and the WCAG proofing tables.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(20px,3vw,40px);margin-top:clamp(28px,5vh,44px)">
+      <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B46C8">Outcome</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Redesign delivered with a WCAG 2.2 proof of compliance mapping.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B46C8">Focus</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Accessibility, design systems, assistive technology.</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B46C8">Context</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">INF 358T Accessible User Experience, Spring 2026. Jasmine's Beat came in as a class client.</p></div>
+    </div>
+    <div style="margin-top:clamp(24px,4vh,36px);padding-top:13px;border-top:1px solid #EDEBEF">
+      <p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B46C8;margin-bottom:14px">Team of four</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:clamp(14px,2vw,28px)">
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:600;color:#6B46C8">Shreya Kancharla</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Design system</span></div>
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Xiuer Gu</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Flows and prototype</span></div>
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Upama Bhattacharya</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Research protocols</span></div>
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Emmy McCluhan</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Governance and production</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j3">03 — The Problem</p>
+    <h2 style="margin:0;max-width:30ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em;text-wrap:pretty">An adaptive dance organisation with a site its own community can't use</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:52ch;margin-top:18px">
+      <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Jasmine's Beat teaches adaptive dance, but parts of its own community can't use the site. We audited the live site as a team and found four types of barriers: missing alternative text, broken structure with no semantic navigation, links that all read "click here," and text that fails contrast.</p>
+      <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Individually, these are compliance issues. Together, they can stop someone from signing up for a class.</p>
+    </div>
+
+    <p style="margin:clamp(40px,6vh,72px) 0 6px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Two personas, built from the team audit</p>
+    <p style="margin:0;max-width:56ch;font-size:13.5px;line-height:1.55;color:#6E6C66">Enzo and Dex are composite users, not people we interviewed. Each represents a barrier we found in the audit and a task the live site currently makes difficult to complete.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:stretch;margin-top:clamp(24px,4vh,36px)">
+      <div style="display:flex;flex-direction:column;padding-top:18px;border-top:1px solid #E9E8EB">
+        <p style="margin:0 0 12px;font-size:13.5px;font-weight:600;letter-spacing:.01em;color:#57554F">Persona 01: Enzo, a dancer with a motor impairment who navigates by voice</p>
+        <p style="margin:0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">He uses Dragon NaturallySpeaking, a voice-control tool that lets him navigate a computer by speaking, rather than using a mouse or keyboard.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">On the live site, the classes page is a wall of text with no headings, and links like "click here" or "email to register" are difficult to distinguish by voice. The task can fail before registration even begins.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;padding-top:18px;border-top:1px solid #E9E8EB">
+        <p style="margin:0 0 12px;font-size:13.5px;font-weight:600;letter-spacing:.01em;color:#57554F">Persona 02: Dex, a Deaf parent looking for a class for his son</p>
+        <p style="margin:0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">He judges a class by watching the studio videos and checking whether the instructor signs before committing his son to it.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">The videos have no captions, and the instructor pages don't provide ASL (American Sign Language) or accessibility information. He has no way to evaluate the class before choosing it.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,4vw,64px);align-items:start;margin-top:clamp(44px,7vh,80px);padding-top:clamp(24px,4vh,40px);border-top:1px solid #E9E8EB">
+      <p style="margin:0;max-width:22ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">The personas are not edge cases. They are the audience.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:46ch">
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">We worked from Antoinette Carroll's equity-centred framework, which shifts the work from designing <i>for</i> to designing <i>with</i>.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">And from Teresa Torres' continuous discovery: the team audit surfaced barriers, the personas explained their human cost, the redesign answered them, and the evaluative protocol tested whether the answer held.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j4">04 — What I Learned</p>
+    <p style="margin:0 0 clamp(40px,6vh,72px);max-width:30ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">One audit. Two personas. Eighteen tasks that either complete or don't.</p>
+
+    <div style="padding-top:clamp(28px,4vh,44px);border-top:1px solid #E9E8EB">
+      <p style="margin:0 0 20px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The finding everything else came from</p>
+      <h3 style="margin:0;max-width:22ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em;text-wrap:pretty">A state you can only see in colour is a state that isn't there.</h3>
+      <p style="margin:26px 0 0;max-width:54ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Every barrier the team rated critical came down to the same thing: meaning carried by something a person couldn't perceive. A disabled button that is only greyer. An error that is only red. A link whose purpose lives in the sentence around it rather than in the link. Fix that one class of failure and most of the task-blocking issues go with it.</p>
+    </div>
+
+    <div style="margin-top:clamp(44px,7vh,80px);padding-top:clamp(28px,4vh,44px);border-top:1px solid #E9E8EB">
+      <p style="margin:0 0 28px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Where that came from</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">4</p>
+          <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">barrier classes carried out of the team audit: missing alt text, broken structure, non-descriptive links, low contrast</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">18</p>
+          <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">evaluative tasks written across both flows, each mapped to a WCAG criterion and a severity rating</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">8</p>
+          <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">of those rated critical — the ones with no workaround, where the task is simply abandoned</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(44px,7vh,80px);padding-top:clamp(28px,4vh,44px);border-top:1px solid #E9E8EB;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,5vw,72px);align-items:start">
+      <h3 style="margin:0;max-width:14ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Five rules I built to</h3>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:0 16px">
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">01</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Never colour alone.</span> <span style="color:#4E4C47">Every state changes its label text as well as its fill.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">02</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">A link says where it goes.</span> <span style="color:#4E4C47">Out of context, read on its own, with no sentence around it.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">03</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">One token, one decision.</span> <span style="color:#4E4C47">A colour is chosen once at the primitive tier and inherited everywhere else.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">04</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Focus is visible on every surface.</span> <span style="color:#4E4C47">2px purple inside, 2px black outside, so the ring survives any background.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">05</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Write what the screen reader says.</span> <span style="color:#4E4C47">If the announcement isn't specified, it isn't designed.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0 0">
+    <p style="margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j5">05 — Key design moments</p>
+  </section>
+
+  <article data-reveal="" style="padding:clamp(40px,6vh,68px) 0 0">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">01</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Three tiers so a colour is decided once</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:500;letter-spacing:.01em;color:#57554F;border:1px solid #E3E1E6;border-radius:999px;padding:5px 12px">Design system</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">The same contrast failure kept returning</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Contrast fixes kept coming back. Fixing a hex on one screen didn't stop the same problem from appearing elsewhere because the colour had no defined role.</p>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered, not taken</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">A palette of approved hexes</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Consistent, but it doesn't say where a colour belongs.</p>
+          </div>
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Two tiers: primitive → component</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Simpler, but each component still has to decide what a colour means.</p>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>Primitive → semantic → component</b></span>
+          <span>The primitive holds the value, the semantic token gives it meaning, and the component decides where it is used.</span>
+          <span>So a contrast fix happens once, at the level that owns it.</span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <figure style="margin:clamp(20px,2.6vh,28px) 0 0">
+        <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:clamp(12px,2vw,20px)"><img src="assets/jb-tokens.png" alt="Token architecture: the three tiers as cards on the left, and a table on the right tracing every component token through a semantic name to one primitive" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:60ch;font-size:13.5px;line-height:1.55;color:#57554F">Left, the three tiers with what each one is for. Right, the same tokens as a table — every component value traced back to one primitive.</figcaption>
+      </figure>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;margin-top:clamp(34px,5vh,58px);border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">02</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Writing what the button says out loud</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:500;letter-spacing:.01em;color:#57554F;border:1px solid #E3E1E6;border-radius:999px;padding:5px 12px">Primary button</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Every button state sounded identical</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Different button states sounded exactly the same on a screen reader. Disabled, error, and success states could all be announced as "Register for Classes, button."</p>
+      </div>
+      
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>The announcement changes with the state.</b></span>
+          <span>A disabled button announces "Registration Closed." An error state announces that registration failed.</span>
+          <span>The visual state and the screen reader announcement now describe the same thing.</span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <figure style="margin:clamp(20px,2.6vh,28px) 0 0">
+        <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:clamp(12px,2vw,20px)"><img src="assets/jb-annot-button.png" alt="The primary button in seven states, each tagged with its ARIA attribute and the exact string a screen reader announces, with six numbered annotation layers below" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:60ch;font-size:13.5px;line-height:1.55;color:#57554F">Seven states, each with its announcement written above it and its ARIA attribute below. The focus ring is 2px purple inside and 2px black outside, 18:1 against the fill.</figcaption>
+      </figure>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:20px 0 0">
+        <figure style="margin:0">
+          <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:12px"><img src="assets/jb-annot-input.png" alt="Text input in empty, focused, filled, error and disabled states with six numbered annotation layers" style="display:block;width:100%;height:auto"></div>
+          <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F">The same six layers on the text input. Error is a red border AND an icon AND error text, never colour alone.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:12px"><img src="assets/jb-annot-checkbox.png" alt="Checkbox in unchecked, checked, indeterminate, focused, disabled and error states with six numbered annotation layers" style="display:block;width:100%;height:auto"></div>
+          <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F">The waiver checkbox. Indeterminate is a fill AND a dash icon, so the third state is never a colour guess.</figcaption>
+        </figure>
+      </div>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;margin-top:clamp(34px,5vh,58px);border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">03</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Putting access information where the decision is made</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:500;letter-spacing:.01em;color:#57554F;border:1px solid #E3E1E6;border-radius:999px;padding:5px 12px">Dex's flow</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Access information arrived too late</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Dex couldn't tell whether a class was right for him until he had already committed. Captions were missing from videos, and instructor accessibility information wasn't available when choosing a class.</p>
+      </div>
+      
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>Put accessibility into the class experience.</b></span>
+          <span>Instructor cards show accessibility training and the directory can filter by it. Videos include captions that describe both the music and movement cues.</span>
+          <span>The information appears where the decision happens, rather than on a separate accessibility page.</span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:clamp(20px,2.6vh,28px) 0 0">
+        <figure style="margin:0">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Video player</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:#4F3A80;border-radius:999px;padding:4px 11px">Chosen</span>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:12px"><img src="assets/jb-video-states.png" alt="Video player in three states: default with a no captions available warning, captions enabled describing the music, and the CC button focused" style="display:block;width:100%;height:auto"></div>
+          <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F">The absence of captions is stated on the player rather than discovered by pressing play.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Instructor card</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:#4F3A80;border-radius:999px;padding:4px 11px">Chosen</span>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:12px"><img src="assets/jb-instructor-card.png" alt="Instructor card in default, focused and ASL-filter-active states, listing accessibility training as tags" style="display:block;width:100%;height:auto"></div>
+          <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F">Training is on the card, so the filter has something real to act on.</figcaption>
+        </figure>
+      </div>
+      <figure style="margin:20px 0 0">
+        <div style="background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;padding:clamp(12px,2vw,20px)"><img src="assets/jb-filter-tags.png" alt="Accessibility filter tag in default, hover, selected, focused and disabled states, and the four tags as a group" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:60ch;font-size:13.5px;line-height:1.55;color:#57554F">Selected adds a checkmark as well as the fill — the four filters read as a set whether or not colour registers.</figcaption>
+      </figure>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;margin-top:clamp(34px,5vh,58px);border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">04</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Annotating heading hierarchy on every screen</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:500;letter-spacing:.01em;color:#57554F;border:1px solid #E3E1E6;border-radius:999px;padding:5px 12px">Screen structure</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">No outline to navigate by</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">A screen reader user navigates by headings, not by looking. On the existing site, sections and card titles didn't have a clear structure.</p>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>Define the hierarchy as part of the design.</b></span>
+          <span>Every page has one H1, no skipped levels, and named landmarks.</span>
+          <span>Focus order is documented alongside it so the way through the page is clear too.</span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <figure style="margin:clamp(20px,2.6vh,28px) 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(18px,3vw,40px);align-items:start">
+        <div style="min-width:0;max-height:min(70vh,640px);overflow:auto;background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;padding:clamp(10px,1.4vw,16px)"><img src="assets/jb-hierarchy-annot.png" alt="The homepage with twenty-four numbered annotations running down both margins, each leader line pointing at the element whose heading level, landmark and focus position it specifies" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="min-width:0;display:flex;flex-direction:column;gap:12px;max-width:44ch;font-size:13.5px;line-height:1.55;color:#57554F">
+          <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Homepage, annotated end to end</span>
+          <span>Twenty-four numbered elements in reading order — brand mark, the five nav items, search, the two hero actions, the captioned video controls, the four audience cards, and every field in the contact form.</span>
+          <span>The number is the focus position and the anchor for its annotation: heading level, landmark, and the string a screen reader announces.</span>
+          <span style="color:#6E6C66">Scroll the frame, or click the image to open it full size.</span>
+        </figcaption>
+      </figure>
+    </sc-if>
+  </article>
+
+  <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:clamp(22px,3.5vh,34px);padding-top:clamp(34px,5vh,58px);margin-top:clamp(34px,5vh,58px);border-top:1px solid #E9E8EB">
+      <p style="margin:0;max-width:34ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">The redesigned flows, one per persona</p>
+      <figure style="margin:0">
+        <p style="margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Persona 01 · Enzo · decision tree</p>
+        <div style="max-height:min(66vh,580px);overflow:auto;background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;padding:clamp(10px,1.4vw,16px)"><img src="assets/jb-flow-enzo-tree2.png" alt="Enzo's decision tree: Dragon opens the site, the current classes page fails on a wall of text and non-descriptive links, and the redesign path reaches a completed registration" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:64ch;font-size:13.5px;line-height:1.55;color:#57554F">Red is where the live site ends the task, green is what the redesign returns. Scroll down to follow it.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <p style="margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Persona 01 · Enzo · annotated screens</p>
+        <div style="max-height:min(66vh,580px);overflow:auto;background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;padding:clamp(10px,1.4vw,16px)"><img src="assets/jb-flow-enzo-screens.png" alt="Enzo's annotated screen sequence in the redesign, from the class finder to the completed registration form" style="display:block;width:1400px;max-width:none;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:64ch;font-size:13.5px;line-height:1.55;color:#57554F">The screens he lands on. Scroll sideways to follow the sequence.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <p style="margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Persona 02 · Dex · decision tree</p>
+        <div style="max-height:min(66vh,580px);overflow:auto;background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;padding:clamp(10px,1.4vw,16px)"><img src="assets/jb-flow-dex-tree3.png" alt="Dex's decision tree: uncaptioned video and instructor pages with no ASL credentials end the task on the live site; captions and the communication access filter carry the redesign path through to enrolment" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:64ch;font-size:13.5px;line-height:1.55;color:#57554F">Two dead ends on the live site, both recoverable in the redesign. Scroll down to follow it.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <p style="margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Persona 02 · Dex · annotated screens</p>
+        <div style="max-height:min(66vh,580px);overflow:auto;background:#FFFFFF;border:1px solid #E9E8EB;border-radius:12px;padding:clamp(10px,1.4vw,16px)"><img src="assets/jb-flow-dex-screens.png" alt="Dex's annotated screen sequence in the redesign, from the captioned video to the instructor directory and contact form" style="display:block;width:1400px;max-width:none;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:64ch;font-size:13.5px;line-height:1.55;color:#57554F">The screens he lands on. Scroll sideways to follow the sequence.</figcaption>
+      </figure>
+    </div>
+  </sc-if>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;margin-top:clamp(34px,5vh,58px);border-top:1px solid #E9E8EB;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 36px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j6">06 — The handoff</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:center">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">Every component shipped with the details needed to build it</p>
+        <p style="margin:0;max-width:46ch;font-size:15.5px;line-height:1.65;color:#4E4C47">The handoff included the ARIA behaviour, screen reader announcements, keyboard interactions, focus states, colour independence, and WCAG criteria for each component.</p>
+        <p style="margin:0;max-width:46ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Focus order was also documented in the prototype, so developers didn't have to work out the intended behaviour themselves.</p>
+      </div>
+      <figure style="margin:0;max-width:440px">
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:#FBFAF8">
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Annotation layers</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4E7A4A">Per component</span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">01</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">ARIA</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">Role and the attributes each state adds.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">02</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Screen reader</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">The exact string announced, state by state.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">03</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Keyboard</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">What Tab, Space and Enter do in each state.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">04</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Focus ring</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">Inside and outside stroke, contrast, 44×44 target.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">05</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Colour independence</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">What changes besides the fill.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">06</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">WCAG criteria</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">The clauses that state answers, by number.</span></span>
+          </div>
+        </div>
+        <figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:#6E6C66">What every annotated component carries.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j7">07 — What I Measured</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">18</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">evaluative tasks, each mapped to a WCAG criterion</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">6</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">annotation layers per component in the sticker sheet</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">18:1</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">contrast on the focus ring, against a 3:1 requirement</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">44px</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">minimum touch target, held across every interactive state</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:start;margin-top:clamp(36px,5vh,56px);padding-top:clamp(26px,4vh,40px);border-top:1px solid #E9E8EB">
+      <p style="margin:0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">What I'd measure next</p>
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:52ch">
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#17181A">Whether a voice-control user can register for a class without ever touching a mouse or asking for help.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Then the things a compliance table can't see: how long the task takes compared with a sighted mouse user, how often someone backtracks, and whether anyone abandons registration at the same point twice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0">
+    <p style="margin:0 0 36px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="j8">08 — What I'd Do Differently</p>
+    <div style="display:flex;flex-direction:column;gap:clamp(26px,4vh,40px)">
+      <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:clamp(14px,2vw,22px);align-items:start;padding-top:22px;border-top:1px solid #E9E8EB">
+        <span style="font-size:13px;font-weight:600;color:#6E6C66;line-height:1.35">01</span>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <h3 style="margin:0;max-width:34ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em;text-wrap:pretty">The personas were based on an audit, not interviews</h3>
+          <p style="margin:0;max-width:52ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Enzo and Dex are personas built from the accessibility audit, not people we interviewed.</p>
+          <div style="display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:12px;row-gap:8px;max-width:52ch">
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">Why</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">We didn’t have enough time to recruit people who use assistive technology — tools that help people interact with a computer in different ways — and conduct the interviews properly.</span></div>
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">What this means</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">The redesign is grounded in the barriers we found, but we haven’t tested whether it actually feels easier for the people represented by these personas.</span></div>
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">Next step</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">Test the key tasks with four to six real participants before the redesign ships.</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:clamp(14px,2vw,22px);align-items:start;padding-top:22px;border-top:1px solid #E9E8EB">
+        <span style="font-size:13px;font-weight:600;color:#6E6C66;line-height:1.35">02</span>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <h3 style="margin:0;max-width:34ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em;text-wrap:pretty">The announcements were written, not tested</h3>
+          <p style="margin:0;max-width:52ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Every screen reader announcement was written from the accessibility requirements, but we didn’t test how they actually sounded when read aloud.</p>
+          <div style="display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:12px;row-gap:8px;max-width:52ch">
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">Why it matters</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">A technically correct announcement can still sound confusing or repetitive when someone hears it.</span></div>
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">What I’d do next</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">Build the annotated states and test them with two screen readers — NVDA, a free Windows screen reader, and VoiceOver, Apple’s built-in screen reader — before signing them off.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding:clamp(40px,7vh,80px) 0;border-top:1px solid #E9E8EB">
+    <div>
+      <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Next</p>
+      <a href="TACC Case Study.dc.html" style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">Turning public-health simulations into a playable experience →</a>
+    </div>
+    <a href="mailto:skancharla7@utexas.edu" style="padding:13px 22px;border-radius:999px;background:#17181A;color:#FBFBF9;font-size:14px;font-weight:500" style-hover="background:#2E3033">Get in touch</a>
+  </section>
+
+  <footer style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:28px 0 48px;border-top:1px solid #E9E8EB;font-size:14px;letter-spacing:-.01em;color:#6E6C66">
+    <span>Shreya · Human-Centered Designer</span>
+    <a href="Portfolio.dc.html">Back to work</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showImages&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    requestAnimationFrame(() => this._initRail());
+    this._t = setTimeout(() => this._initRail(), 800);
+    import('./lightbox.js').then(m => m.initLightbox(document)).catch(() => {});
+  }
+  componentWillUnmount() {
+    clearTimeout(this._t);
+    if (this._pick) { window.removeEventListener('scroll', this._pick); window.removeEventListener('resize', this._pick); }
+  }
+  _initRail() {
+    const links = Array.from(document.querySelectorAll('#rail a[data-rail]'));
+    if (!links.length) return;
+    const pairs = links.map((a) => {
+      const t = document.getElementById(a.getAttribute('data-rail'));
+      return { a, sec: t && (t.closest('section') || t.closest('header') || t) };
+    }).filter((p) => p.sec);
+    if (!pairs.length) return;
+    const paint = (active) => pairs.forEach(({ a, sec }) => {
+      const on = sec === active;
+      if (on) a.setAttribute('data-active', ''); else a.removeAttribute('data-active');
+      a.style.color = on ? '#17181A' : '';
+      const tick = a.querySelector('[data-tick]');
+      tick.style.width = on ? '26px' : '14px';
+      tick.style.background = on ? '#17181A' : '#D6D3D8';
+    });
+    const pick = () => {
+      let cur = pairs[0].sec;
+      const line = window.innerHeight * 0.32;
+      pairs.forEach(({ sec }) => { if (sec.getBoundingClientRect().top <= line) cur = sec; });
+      paint(cur);
+    };
+    if (this._pick) { window.removeEventListener('scroll', this._pick); window.removeEventListener('resize', this._pick); }
+    this._pick = pick;
+    window.addEventListener('scroll', pick, { passive: true });
+    window.addEventListener('resize', pick);
+    pick();
+  }
+  renderVals() {
+    return { showImages: this.props.showImages ?? true };
+  }
+}
+</script>
+</body>
+</html>

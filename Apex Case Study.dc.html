@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  [data-shell] { --rail: 0px; }
+  body { margin: 0; background: #FFFFFF; color: #17181A; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #17181A; text-decoration: none; }
+  a:hover { color: #57554F; }
+  ::selection { background: #EFE9F8; }
+  @media (max-width: 560px) { [data-hide-sm] { display: none !important; } [data-brandline] { font-size: 18px !important; } }
+  #rail { display: none; }
+  #rail a { color: #6E6C66; }
+  #rail a:hover { color: #17181A; }
+  #rail a:hover [data-tick] { background: #17181A; }
+  #rail [data-label] { display: none; opacity: 0; transform: translateX(-4px); transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.3,1); }
+  @media (min-width: 620px) {
+    #rail { display: flex; }
+    [data-shell] { --rail: 46px; padding-left: calc(46px + clamp(20px,4vw,56px)) !important; }
+  }
+  @media (min-width: 620px) and (max-width: 1551.98px) {
+    #rail a { position: relative; }
+    #rail [data-label] { display: block; position: absolute; left: 26px; top: 50%; opacity: 0; transform: translate(-4px, -50%); padding: 5px 10px; border-radius: 7px; background: #17181A; color: #FBFBF9; font-size: 11.5px; pointer-events: none; box-shadow: 0 8px 20px -12px rgba(23,24,26,.6); }
+    #rail a:hover [data-label], #rail a:focus-visible [data-label] { opacity: 1; transform: translate(0, -50%); }
+  }
+  @media (min-width: 1180px) {
+    #rail { left: calc(50% - 586px) !important; }
+    [data-shell] { --rail: 0px; padding-left: clamp(20px,4vw,56px) !important; }
+  }
+  @media (min-width: 1552px) {
+    #rail { width: 212px !important; left: calc(50% - 776px) !important; }
+    #rail [data-label] { display: block; }
+    #rail a[data-active] [data-label] { opacity: 1; transform: none; color: #17181A; }
+    #rail:hover [data-label], #rail:focus-within [data-label] { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 780px) { [data-turn] { transform: rotate(90deg); } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background-image:linear-gradient(178deg, #F7F4F8 0%, #FCFBFC 34%, #FFFFFF 62%);background-repeat:no-repeat;background-attachment:fixed;background-size:100% 100%">
+
+  <nav id="rail" aria-label="Sections" style="position:fixed;top:50%;transform:translateY(-50%);left:max(12px, calc(50% - 540px));width:26px;flex-direction:column;gap:2px;z-index:9">
+    
+    <a href="#a0" data-rail="a0" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Intro</span>
+    </a>
+    <a href="#a1" data-rail="a1" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Overview</span>
+    </a>
+    <a href="#a2" data-rail="a2" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Context</span>
+    </a>
+    <a href="#a3" data-rail="a3" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Final artifacts</span>
+    </a>
+    <a href="#a4" data-rail="a4" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Key design moments</span>
+    </a>
+    <a href="#a5" data-rail="a5" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Research</span>
+    </a>
+    <a href="#a6" data-rail="a6" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Impact</span>
+    </a>
+    <a href="#a7" data-rail="a7" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">Reflections</span>
+    </a>
+  </nav>
+
+<div data-shell="" style="max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+
+  <nav style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid #E9E8EB;position:sticky;top:0;background:rgba(249,246,250,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="Portfolio.dc.html#work" aria-label="Other case studies" style="display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 11px;margin-right:2px;border:1px solid #E1DEE6;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-.01em;color:#4E4C47;background:#FFFFFF" style-hover="background:#F6F1F8;color:#5B4187;borderColor:#D8CDE4"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Other case studies</a>
+      <a href="Portfolio.dc.html" style="font-size:14px;letter-spacing:-.01em;font-weight:700">Shreya</a>
+      <span data-brandline="" style="font-family:Caveat,cursive;font-size:22px;font-weight:600;letter-spacing:0;line-height:1;color:#6B4E9B;transform:translateY(1px)">Human-Centered Designer</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:26px;font-size:14px;letter-spacing:-.01em;font-weight:500">
+      <a href="Portfolio.dc.html#work">Work</a>
+      <a href="Portfolio.dc.html#about">About</a>
+      <a href="https://docs.google.com/document/d/1oUWtZNwBcNCkYKSSwn7upzmY2ENZkqafltgQavu4DFg/edit?usp=sharing" target="_blank" rel="noopener">Resume</a>
+      <a href="mailto:skancharla7@utexas.edu">Contact</a>
+    </div>
+  </nav>
+
+  <header style="padding:clamp(48px,9vh,104px) 0 clamp(32px,5vh,56px)">
+    <p style="margin:0 0 24px;font-size:13.5px;font-weight:500;letter-spacing:0;color:#6E6C66;scroll-margin-top:110px" id="a0">2024 · Fintech · Product Design · 0 to 1</p>
+    <h1 style="margin:0;max-width:20ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-0.035em;text-wrap:pretty">Making complex API documentation easier to use</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:22px clamp(28px,5vw,64px);margin-top:38px">
+      <p style="flex:1 1 380px;min-width:0;margin:0;max-width:38ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Apex's documentation was a wall of text in a single theme with no way to navigate it.</p>
+      <p style="flex:1 1 320px;min-width:0;margin:0;max-width:46ch;font-size:15.5px;line-height:1.65;color:#4E4C47">I restructured it into a developer portal that technical and non-technical stakeholders could both use, and added a community so questions stopped disappearing into email.</p>
+    </div>
+  </header>
+
+  <figure style="margin:0 0 clamp(40px,7vh,80px)">
+    <div style="position:relative;border-radius:16px 16px 0 0;overflow:hidden;background:#050B2E;background-image:linear-gradient(#ffffff0e 1px,transparent 1px),linear-gradient(90deg,#ffffff0e 1px,transparent 1px);background-size:64px 64px;padding:clamp(26px,4.4vw,58px) clamp(20px,4vw,54px) 0">
+      <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 50% -8%, rgba(107,78,155,.28), transparent 62%);pointer-events:none"></div>
+      <div style="position:relative;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;margin-bottom:clamp(18px,3vh,32px)">
+        <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82)">Apex Fintech Solutions</p>
+        <p style="margin:0;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.52)">Developer portal · 2024</p>
+      </div>
+      <div style="position:relative;margin:0 auto;max-width:960px;border:1px solid rgba(255,255,255,.16);border-bottom:0;border-radius:11px 11px 0 0;overflow:hidden;box-shadow:0 -1px 0 rgba(255,255,255,.08), 0 40px 90px rgba(2,6,23,.6)">
+        <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#0C1440;border-bottom:1px solid rgba(255,255,255,.1)">
+          <span style="width:9px;height:9px;border-radius:999px;background:#F0757F"></span>
+          <span style="width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,.28)"></span>
+          <span style="width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,.28)"></span>
+          <span style="margin-left:10px;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,.07);font-size:11px;letter-spacing:.04em;color:rgba(255,255,255,.62)">developer.apex.com/docs</span>
+        </div>
+        <div style="position:relative;aspect-ratio:16/8.4;overflow:hidden;background:#0A1033">
+          <img src="assets/apex-docs-dark.png" alt="The redesigned Getting Started documentation page in dark theme, with left-hand navigation, a plain-language overview and a how-it-works diagram" style="display:block;width:100%;height:auto">
+          <div style="position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(transparent,rgba(5,11,46,.92))"></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:#E9E8EB;border:1px solid #E9E8EB;border-top:0;border-radius:0 0 16px 16px;overflow:hidden">
+      <div style="background:#FFFFFF;padding:18px clamp(16px,2vw,26px)">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:26px;line-height:1.1;letter-spacing:-0.025em">10 weeks</p>
+        <p style="margin:5px 0 0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Summer 2024</p>
+      </div>
+      <div style="background:#FFFFFF;padding:18px clamp(16px,2vw,26px)">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:26px;line-height:1.1;letter-spacing:-0.025em">2 audiences</p>
+        <p style="margin:5px 0 0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Developers &amp; buyers</p>
+      </div>
+      <div style="background:#FFFFFF;padding:18px clamp(16px,2vw,26px)">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:26px;line-height:1.1;letter-spacing:-0.025em">1 portal</p>
+        <p style="margin:5px 0 0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Docs, sandbox, community</p>
+      </div>
+      <div style="background:#FFFFFF;padding:18px clamp(16px,2vw,26px)">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:26px;line-height:1.1;letter-spacing:-0.025em">Approved</p>
+        <p style="margin:5px 0 0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Direction signed off</p>
+      </div>
+    </div>
+  </figure>
+
+  <section data-reveal="" style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px);padding-bottom:clamp(40px,7vh,80px);border-bottom:1px solid #E9E8EB">
+    <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a1">Overview</p>
+    <div style="flex:1 1 420px;min-width:0">
+      <div style="display:flex;flex-direction:column;gap:14px;padding-left:clamp(16px,2vw,24px);border-left:2px solid #6B4E9B">
+        <p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B4E9B">Role — UX Design Intern</p>
+        <p style="margin:0;max-width:46ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(18px,2vw,23px);line-height:1.4;letter-spacing:-0.02em;color:#17181A;text-wrap:pretty">I was the sole designer on the developer portal, from research through the approved direction.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(20px,3vw,40px);margin-top:clamp(28px,5vh,44px)">
+        <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B4E9B">Timeline</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">10 weeks, Summer 2024</p></div>
+        <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B4E9B">Focus</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Developer experience, documentation UX, platform design</p></div>
+        <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B4E9B">Outcome</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Presented to the team and the CEO in the final week; the design direction was approved</p></div>
+      </div>
+      <div style="margin-top:clamp(24px,4vh,36px);padding-top:13px;border-top:1px solid #EDEBEF">
+        <p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6B4E9B;margin-bottom:14px">Team of three</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:clamp(14px,2vw,28px)">
+          <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:600;color:#6B4E9B">Shreya Kancharla</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Design</span></div>
+          <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Product manager</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">My manager</span></div>
+          <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Technical content writer</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Documentation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="" style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px);padding:clamp(44px,7vh,88px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a2">Context</p>
+    <div style="flex:1 1 420px;min-width:0">
+      <p style="margin:0 0 14px;max-width:30ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Documentation is more than a support asset</p>
+      <p style="margin:0 0 40px;max-width:52ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Apex is B2B fintech. Its customers build on its APIs, so the documentation is often where they decide whether they can work with the platform.</p>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:22px clamp(20px,3vw,36px);margin-bottom:36px">
+        <div style="flex:1 1 260px;min-width:0;padding:22px 24px;border:1px solid #E9E8EB;border-radius:12px;background:rgba(250,249,251,.6)">
+          <p style="margin:0 0 14px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Before</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:14.5px;line-height:1.55;color:#57554F">
+            <span>One long body of text</span>
+            <span>No clear navigation</span>
+            <span>No interactive examples</span>
+            <span>No way to ask questions</span>
+            <span>Light mode only</span>
+          </div>
+        </div>
+        <span data-turn="" aria-hidden="true" style="flex:0 0 auto;font-size:26px;line-height:1;color:#6B4E9B">→</span>
+        <div style="flex:1 1 260px;min-width:0;padding:22px 24px;border:1px solid #DFDEE2;border-radius:12px;background:#FFFFFF">
+          <p style="margin:0 0 14px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#57554F">After</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:14.5px;line-height:1.55;font-weight:500">
+            <span>Layered developer portal</span>
+            <span>Left-hand navigation + search</span>
+            <span>Interactive examples</span>
+            <span>Tutorials and videos</span>
+            <span>Developer community</span>
+            <span>Light and dark mode</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px 40px;margin-bottom:36px">
+        <div>
+          <p style="margin:0 0 8px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:19px;line-height:1.3;letter-spacing:-0.02em">Developers struggled to find what they needed.</p>
+        </div>
+        <div>
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:19px;line-height:1.3;letter-spacing:-0.02em">Non-technical stakeholders struggled to understand it.</p>
+        </div>
+      </div>
+
+      <p style="margin:0 0 6px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The cost</p>
+      <p style="margin:0 0 10px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em">Trust.</p>
+      <p style="margin:0;max-width:48ch;font-size:15.5px;line-height:1.65;color:#4E4C47">When people cannot find an answer or understand the product, they can lose confidence in moving forward.</p>
+    </div>
+  </section>
+
+  <section data-reveal="" style="padding:clamp(44px,7vh,88px) 0;border-bottom:1px solid #E9E8EB">
+    <div style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px);margin-bottom:clamp(28px,4vh,44px)">
+      <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a3">Final artifacts</p>
+      <h2 style="flex:1 1 420px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em">The developer portal</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,2.4vw,28px);margin-bottom:clamp(36px,6vh,64px)">
+      <figure style="margin:0">
+        <div style="position:relative;aspect-ratio:16/10;border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#050B2E">
+          <iframe src="https://drive.google.com/file/d/1l8EZVX-wqvEhnDk038tbKh1Y-kb_4s9q/preview" title="Prototype walkthrough, part one" allow="autoplay" allowfullscreen="allowfullscreen" style="display:block;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <figcaption style="margin-top:12px;max-width:46ch;font-size:14.5px;line-height:1.55;color:#57554F"><span style="font-weight:500;color:#17181A">Prototype walkthrough, part one.</span> <a href="https://drive.google.com/file/d/1l8EZVX-wqvEhnDk038tbKh1Y-kb_4s9q/view" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">Open in a new tab</a> if the player does not load.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <div style="position:relative;aspect-ratio:16/10;border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#050B2E">
+          <iframe src="https://drive.google.com/file/d/1xbOnMCtuC4gS2Nr4iVOvGcASo0CuN3sP/preview" title="Prototype walkthrough, part two" allow="autoplay" allowfullscreen="allowfullscreen" style="display:block;width:100%;height:100%;border:0"></iframe>
+        </div>
+        <figcaption style="margin-top:12px;max-width:46ch;font-size:14.5px;line-height:1.55;color:#57554F"><span style="font-weight:500;color:#17181A">Prototype walkthrough, part two.</span> <a href="https://drive.google.com/file/d/1xbOnMCtuC4gS2Nr4iVOvGcASo0CuN3sP/view" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">Open in a new tab</a> if the player does not load.</figcaption>
+      </figure>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(24px,4vw,56px);margin-bottom:clamp(36px,6vh,64px)">
+      <figure style="flex:1 1 300px;min-width:0;max-width:520px;margin:0;position:relative">
+        <div style="position:relative;padding-left:36px">
+          <div style="border:1px solid #E3E1E6;border-radius:16px;overflow:hidden;background:#fff"><img src="assets/apex-portal-full.png" alt="The full developer portal home page, top to bottom: dark hero, four entry cards, an interactive Try it Out panel, video tutorials, a grid of API guides, and developer resources" style="display:block;width:100%;height:auto"></div>
+          <span style="position:absolute;left:0;top:6%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">1</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(6% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+          <span style="position:absolute;left:0;top:18%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">2</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(18% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+          <span style="position:absolute;left:0;top:25%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">3</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(25% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+          <span style="position:absolute;left:0;top:39.5%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">4</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(39.5% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+          <span style="position:absolute;left:0;top:51%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">5</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(51% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+          <span style="position:absolute;left:0;top:67.5%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">6</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(67.5% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+        </div>
+        <figcaption style="margin-top:12px;font-size:12.5px;font-weight:500;letter-spacing:0;color:#6E6C66">The portal home, full page</figcaption>
+      </figure>
+      <div style="flex:1 1 300px;min-width:0;display:grid;grid-template-columns:auto 1fr;gap:16px 14px;align-items:baseline;align-content:start">
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">1</span>
+        <div><p style="margin:0 0 3px;font-size:15px;font-weight:500">A front door, not a document</p><p style="margin:0;max-width:44ch;font-size:14.5px;line-height:1.55;color:#4E4C47">The old experience dropped users straight into API reference, without explaining the product first. The new homepage gives a plain-language introduction to Apex, then directs users to guides, APIs, SDKs, or the sandbox.</p></div>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">2</span>
+        <div><p style="margin:0 0 3px;font-size:15px;font-weight:500">Four ways in</p><p style="margin:0;max-width:44ch;font-size:14.5px;line-height:1.55;color:#4E4C47">The homepage brings Guides, API Reference, SDKs, and the Sandbox into view, so users can choose the path that matches what they need.</p></div>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">3</span>
+        <div><p style="margin:0 0 3px;font-size:15px;font-weight:500">Try it on the homepage</p><p style="margin:0;max-width:44ch;font-size:14.5px;line-height:1.55;color:#4E4C47">Users can send a live API request and see the response immediately, without opening another page or setting up a separate tool.</p></div>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">4</span>
+        <div><p style="margin:0 0 3px;font-size:15px;font-weight:500">Video for non-technical users</p><p style="margin:0;max-width:44ch;font-size:14.5px;line-height:1.55;color:#4E4C47">Stakeholders needed a way to understand Apex without reading API documentation, so tutorials and videos became part of the main experience.</p></div>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">5</span>
+        <div><p style="margin:0 0 3px;font-size:15px;font-weight:500">Make the reference scannable</p><p style="margin:0;max-width:44ch;font-size:14.5px;line-height:1.55;color:#4E4C47">Instead of one long list of APIs, the reference is grouped into 12 clear API domains, making it easier for developers to find the area they need.</p></div>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">6</span>
+        <div><p style="margin:0 0 3px;font-size:15px;font-weight:500">Somewhere to ask</p><p style="margin:0;max-width:44ch;font-size:14.5px;line-height:1.55;color:#4E4C47">When the documentation isn't enough, users can ask the community, contact Apex, or find more context through the blog.</p></div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:clamp(28px,5vh,52px)">
+      <figure style="margin:0">
+        <div style="position:relative;padding-left:36px;padding-right:36px">
+          <div style="border:1px solid #E3E1E6;border-radius:14px;overflow:hidden;background:#fff"><img src="assets/apex-docs-light.png" alt="A Getting Started documentation page with left-hand navigation, a plain-language introduction, and a How it works diagram" style="display:block;width:100%;height:auto"></div>
+          <span style="position:absolute;right:0;top:2.4%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600;z-index:2">1</span><span aria-hidden="true" style="position:absolute;right:22px;top:calc(2.4% + 11px);width:14px;height:1px;background:#6B4E9B;opacity:.55"></span>
+          <span style="position:absolute;left:0;top:31%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600;z-index:2">2</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(31% + 11px);width:calc(14px + 26%);height:1px;background:#6B4E9B;opacity:.55"></span>
+          <span style="position:absolute;left:0;top:40%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600;z-index:2">3</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(40% + 11px);width:14px;height:1px;background:#6B4E9B;opacity:.55"></span>
+          <span style="position:absolute;left:0;top:84%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600;z-index:2">4</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(84% + 11px);width:calc(14px + 26%);height:1px;background:#6B4E9B;opacity:.55"></span>
+        </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:12px"><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">1</span>Theme toggle</span><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">2</span>Plain language first</span><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">3</span>Left-hand navigation</span><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">4</span>Diagram beside the code</span></div>
+        <figcaption style="margin-top:12px;max-width:62ch;font-size:14.5px;line-height:1.55;color:#4E4C47"><span style="font-weight:500;color:#17181A">One page, two depths.</span> The overview and the diagram answer the stakeholder question at the top; the reference and code a developer came for sit directly below, reachable from the left rail.</figcaption>
+      </figure>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:clamp(28px,5vh,52px)">
+      <figure style="margin:0">
+        <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#fff"><img src="assets/apex-tryit.png" alt="Try it Out panel: a list of sample calls on the left, the request body rendered as code on the right" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F"><span style="font-weight:500;color:#17181A">Try it out.</span> Pick a call, read the request, run it. Testing moved out of Postman and onto the page.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#fff"><img src="assets/apex-guides.png" alt="Browse Our Guides: a three-column grid of twelve API domains" style="display:block;width:100%;height:auto"></div>
+        <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F"><span style="font-weight:500;color:#17181A">Guides by domain.</span> Twelve labelled entries replace the single body of writing developers used to scroll.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section data-reveal="" style="padding:clamp(48px,8vh,96px) 0 0">
+    <div style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px)">
+      <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a4">Key design moments</p>
+      <h2 style="flex:1 1 420px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em">Three decisions</h2>
+    </div>
+  </section>
+
+  <article data-reveal="" style="padding:clamp(40px,6vh,68px) 0 clamp(44px,7vh,88px);border-bottom:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">01</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Structure the page for two audiences</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Two audiences, different needs.</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span>Developers came looking for implementation details. PMs, founders, and CEOs needed to understand the product before making a decision.</span>
+          <span>Putting both into the same content made the page harder to use.</span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Two separate paths</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span>Technical documentation for developers</span>
+          <span>Business documentation for stakeholders</span>
+          <span>But separating them meant maintaining two structures—and made it easier for people to end up in the wrong place.</span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#56407E">What I chose</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">One page, with information in layers</p>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b style="font-weight:500">Start simple.</b> A plain-language explanation gives everyone the context first.</span>
+          <span><b style="font-weight:500">Show how it works.</b> A visual makes the concept easier to understand before getting technical.</span>
+          <span><b style="font-weight:500">Go deeper when needed.</b> Reference details and code sit underneath for developers who need them.</span>
+        </div>
+      </div>
+    </div>
+    <figure style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:clamp(14px,2vw,24px);max-width:1180px;margin:0 auto">
+        <div style="flex:2 1 340px;min-width:0;display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#56407E">One page, layered</p>
+          <div style="flex:1;display:flex;gap:12px;padding:14px;border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+            <div style="flex:0 0 auto;width:clamp(120px,15vw,170px);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:16px 14px;border-radius:8px;background:#fff;border:1px solid #DCD2EC">
+              <p style="margin:0;font-size:14.5px;font-weight:500;line-height:1.3">Easy to navigate</p>
+              <p style="margin:0;font-size:13.5px;line-height:1.55;color:#57554F">Left navigation makes sections easy to scan and jump to, with search built in.</p>
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+              <div style="padding:13px 16px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><p style="margin:0 0 3px;font-size:14.5px;font-weight:500">Overview first</p><p style="margin:0;font-size:14.5px;line-height:1.55;color:#57554F">Plain-language context for everyone.</p></div>
+              <div style="padding:13px 16px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><p style="margin:0 0 3px;font-size:14.5px;font-weight:500">How it works</p><p style="margin:0;font-size:14.5px;line-height:1.55;color:#57554F">Visual explanation before the technical detail.</p></div>
+              <div style="padding:13px 16px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><p style="margin:0 0 3px;font-size:14.5px;font-weight:500">Reference + code</p><p style="margin:0;font-size:14.5px;line-height:1.55;color:#57554F">Deeper detail for developers.</p></div>
+              <div style="padding:13px 16px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><p style="margin:0 0 3px;font-size:14.5px;font-weight:500">For PMs</p><p style="margin:0;font-size:14.5px;line-height:1.55;color:#57554F">Linked tutorials and videos provide a quick way to understand the product without digging into the technical details.</p></div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:clamp(12px,1.6vw,18px)">
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Developer</p>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px dashed #C9C7CD;border-radius:12px;font-size:14.5px;line-height:1.55;color:#57554F">
+              <span>Arrives with a task.</span>
+              <span>Scans for the right section.</span>
+              <span>Needs the implementation details.</span>
+            </div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+            <p style="margin:0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Stakeholder</p>
+            <div style="flex:1;display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px dashed #C9C7CD;border-radius:12px;font-size:14.5px;line-height:1.55;color:#57554F">
+              <span>Arrives with a decision to make.</span>
+              <span>Needs the concept first.</span>
+              <span>May never need the code.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </article>
+
+  <div aria-hidden="true" style="display:flex;justify-content:center;padding:clamp(32px,5vh,56px) 0;font-size:24px;color:#6B4E9B">↓</div>
+
+  <article data-reveal="" style="padding:clamp(40px,6vh,68px) 0 clamp(44px,7vh,88px);border-bottom:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">02</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">A portal, not just a docs page</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span>Developers needed more than documentation. They wanted somewhere to try APIs, find examples, and get unstuck.</span>
+          <span>Non-technical stakeholders needed videos, tutorials, and a way to ask questions.</span>
+          <span>But there was no shared place to do any of this.</span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Keep support separate</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span>Questions could go through comments or a support channel.</span>
+          <span>But useful answers would stay scattered.</span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#56407E">What I chose</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Turn documentation into a developer portal</p>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span>A searchable community alongside the docs gave users one place to:</span>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <span style="padding:9px 13px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><b style="font-weight:500">Learn</b> — tutorials, videos, and articles</span>
+            <span style="padding:9px 13px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><b style="font-weight:500">Build</b> — API docs, examples, and testing tools</span>
+            <span style="padding:9px 13px;border-radius:8px;background:#fff;border:1px solid #DCD2EC"><b style="font-weight:500">Ask</b> — questions and community answers</span>
+          </div>
+          <span>A question answered once could help the next developer too.</span>
+        </div>
+      </div>
+    </div>
+    <figure style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(14px,1.6vw,20px);max-width:1360px;margin:0 auto">
+          <figure style="margin:0">
+            <div style="position:relative;padding-left:34px">
+              <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#050B2E"><img src="assets/apex-forum-home.png" alt="Developer Forum landing page with a large community search field, a post composer, and an events list" style="display:block;width:100%;height:auto"></div>
+              <span style="position:absolute;left:0;top:25%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">1</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(25% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:12px"><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">1</span>Search before you ask</span></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Step 1 · Arrive</span></div>
+            <figcaption style="margin:8px 0 0;max-width:46ch;font-size:14.5px;line-height:1.55;color:#57554F">Search leads, because most questions have already been answered once. Events sit beside it so the community has a pulse on day one.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div style="position:relative;padding-left:34px">
+              <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#fff"><img src="assets/apex-forum-compose.png" alt="Post composer with a title field, a prompt asking what you are stuck on, Insight and Question tags, attachment controls, and a Post button" style="display:block;width:100%;height:auto"></div>
+              <span style="position:absolute;left:0;top:43%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">1</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(43% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+              <span style="position:absolute;left:0;top:84%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">2</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(84% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:12px"><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">1</span>Prompt does the coaching</span><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">2</span>Tags make it findable</span></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Step 2 · Ask</span></div>
+            <figcaption style="margin:8px 0 0;max-width:46ch;font-size:14.5px;line-height:1.55;color:#57554F">The placeholder tells a hesitant first poster that implementation questions belong here. Tags, code and images are part of the composer, not an afterthought.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div style="position:relative;padding-left:34px">
+              <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#fff"><img src="assets/apex-forum-thread.png" alt="A forum thread asking how to make a transaction via the API, with a syntax-highlighted JSON body, 300 upvotes and 40 replies" style="display:block;width:100%;height:auto"></div>
+              <span style="position:absolute;left:0;top:21%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">1</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(21% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+              <span style="position:absolute;left:0;top:67%;display:grid;place-items:center;width:22px;height:22px;border-radius:999px;background:#6B4E9B;color:#fff;font-family:'Instrument Sans',sans-serif;font-size:11.5px;font-weight:600">2</span><span aria-hidden="true" style="position:absolute;left:22px;top:calc(67% + 11px);width:12px;height:1px;background:#C9C7CD"></span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:12px"><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">1</span>Code in the question</span><span style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;line-height:1.55;color:#4E4C47"><span style="display:grid;place-items:center;flex:0 0 auto;width:19px;height:19px;border-radius:999px;background:#6B4E9B;color:#fff;font-size:10.5px;font-weight:600">2</span>Votes surface the answer</span></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Step 3 · Compound</span></div>
+            <figcaption style="margin:8px 0 0;max-width:46ch;font-size:14.5px;line-height:1.55;color:#57554F">A pasted request body is the unit of a real integration question. Voted and bookmarked, one answer stops being a ticket and starts being documentation.</figcaption>
+          </figure>
+        </div>
+    </figure>
+  </article>
+
+  <div aria-hidden="true" style="display:flex;justify-content:center;padding:clamp(32px,5vh,56px) 0;font-size:24px;color:#6B4E9B">↓</div>
+
+  <article data-reveal="" style="padding-bottom:clamp(44px,7vh,88px);border-bottom:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">03</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Both themes, not the right one</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Light mode only</p><div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span>Developers described eye strain during long documentation sessions. The docs were light mode only.</span>
+          <span>I initially took their feedback to mean that dark mode should be the answer.</span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">What I got wrong</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Dark mode only</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span>In interviews, developers told me dark mode was easier to read. The reasoning made sense, especially since most of them already worked in dark IDEs.</span>
+          <span>So I designed around it.</span>
+          <span>Testing showed that I had turned a preference into a constraint. Some developers still preferred light mode, and the better choice depended on the person, the environment, and even the time of day.</span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#56407E">What I chose</p>
+        <p style="margin:0 0 6px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Give people the choice</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span>Instead of deciding which theme was better, I added a toggle that lets users switch between light and dark mode without leaving the page.</span>
+          <span>The lesson was less about light versus dark mode and more about <b style="font-weight:500">when not to turn user feedback into a design rule.</b></span>
+        </div>
+      </div>
+    </div>
+    <figure style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(14px,1.6vw,20px);max-width:1360px;margin:0 auto">
+          <figure style="margin:0">
+            <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#fff"><img src="assets/apex-docs-light.png" alt="Getting Started page in light theme" style="display:block;width:100%;height:auto"></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Light only</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#56407E;border:1px solid #CFC2E4;border-radius:999px;padding:3px 10px">Before</span></div>
+            <figcaption style="margin:8px 0 0;max-width:42ch;font-size:14.5px;line-height:1.55;color:#57554F">What existed. Fine in a bright room, punishing across an hour-long integration session.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#0A1033"><img src="assets/apex-docs-dark.png" alt="The same Getting Started page in dark theme" style="display:block;width:100%;height:auto"></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Dark only</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4F3A80;border:1px solid #4F3A80;border-radius:999px;padding:3px 10px">Rejected in testing</span></div>
+            <figcaption style="margin:8px 0 0;max-width:42ch;font-size:14.5px;line-height:1.55;color:#57554F">What I designed first, and defended. Developers read it more comfortably and still did not want it imposed.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div style="border:1px solid #E3E1E6;border-radius:12px;overflow:hidden;background:#050B2E;display:grid;place-items:center;padding:clamp(18px,3vw,34px)"><img src="assets/apex-toggle.png" alt="Close-up of the theme toggle in the portal header, switched to dark" style="display:block;width:100%;height:auto;border-radius:8px"></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Both, with a toggle</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:#4F3A80;border-radius:999px;padding:4px 11px">Shipped</span></div>
+            <figcaption style="margin:8px 0 0;max-width:42ch;font-size:14.5px;line-height:1.55;color:#57554F">The control sits in the header next to login, reachable mid-read on any page rather than buried in settings.</figcaption>
+          </figure>
+        </div>
+    </figure>
+  </article>
+
+  <section data-reveal="" style="padding:clamp(44px,7vh,88px) 0;border-bottom:1px solid #E9E8EB">
+    <div style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px);margin-bottom:clamp(28px,4vh,44px)">
+      <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a5">Research</p>
+      <div style="flex:1 1 420px;min-width:0">
+        <h2 style="margin:0 0 20px;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em">What the research showed</h2>
+        <p style="margin:0 0 16px;max-width:52ch;font-size:15.5px;line-height:1.65;color:#4E4C47">I interviewed 16 people, 8 developers and 8 non-technical stakeholders across product management, startup founders, and CEOs, then ran usability testing on the designs themselves.</p>
+        <p style="margin:0 0 20px;max-width:52ch;font-size:15.5px;line-height:1.65;color:#4E4C47">I was watching how each group navigated, where they got confused or slowed down, what built or broke their trust, and how non-technical stakeholders judged whether the platform looked credible.</p>
+        <p style="margin:0;max-width:34ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Testing was where the project changed. One of my main decisions did not survive it.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px 40px;padding-top:clamp(20px,3vh,32px);border-top:1px solid #E9E8EB">
+      <div>
+        <p style="margin:0 0 12px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Developers do not read, they hunt.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">They scanned instead of reading, looking for organized sections and clear structure. Poor organization did not just slow them down, it lowered their confidence in the product. Structure was read as a signal of quality.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Everyone wanted to get to the examples.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Across all four groups, people wanted to interact with the APIs, test them, and find supporting resources. Clear organization and accessible examples were what made them feel confident using the product.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 12px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Non-technical stakeholders needed a different register.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Simple language, visuals, and video, plus an obvious way to ask a follow-up question.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:22px clamp(28px,5vw,64px);margin-top:clamp(32px,5vh,52px);padding-top:clamp(24px,4vh,40px);border-top:1px solid #E9E8EB">
+      <div style="flex:1 1 340px;min-width:0">
+        <p style="margin:0 0 14px;max-width:28ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Two types of user, one set of pages.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:15.5px;line-height:1.65;color:#4E4C47">
+          <span><span style="font-weight:500;color:#17181A">Technical users</span> optimize for speed and want to skip ahead.</span>
+          <span><span style="font-weight:500;color:#17181A">Non-technical users</span> optimize for confidence and need to be brought along.</span>
+          <span>Every structural decision in this project came from that conflict.</span>
+        </div>
+      </div>
+      <div style="flex:1 1 260px;min-width:0">
+        <p style="margin:0 0 16px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Design principles</p>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 16px;font-size:14.5px;line-height:1.55;align-items:baseline">
+          <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">01</span><span style="font-weight:500">Layered information, overview then detail</span>
+          <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">02</span><span style="font-weight:500">Multiple entry points for different user types</span>
+          <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">03</span><span style="font-weight:500">Visual aids alongside technical content</span>
+          <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B">04</span><span style="font-weight:500">Interactive examples and testing tools</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="" style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px);padding:clamp(44px,7vh,88px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a6">Impact</p>
+    <div style="flex:1 1 420px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px 40px">
+      <div>
+        <p style="margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">What was approved</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">I presented the redesign to the team and the CEO in the final week. The direction was reviewed and approved, and the work was left with the team as the reference for building it.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">What I could measure</p>
+        <p style="margin:0 0 8px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.03em;color:#6B4E9B">16</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">participants across interviews and usability testing, spanning developers, product managers, founders, and executives.</p>
+      </div>
+      <div style="grid-column:1/-1">
+        
+        
+        
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="" style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px);padding:clamp(44px,7vh,88px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="a7">Reflections</p>
+    <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:clamp(30px,5vh,48px)">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0 0 14px;max-width:34ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">Designing for a domain I did not know</p>
+        <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.65;color:#4E4C47">When I was asked to design for Apex, I knew very little about APIs, fintech, or how the product worked. It was intimidating to be asked to design for a space I barely understood.</p>
+        <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.65;color:#4E4C47">So I spent my first few days <b style="font-weight:500;color:#17181A">learning the product and the domain before designing</b> — understanding what Apex offered, how developers integrated it, and how similar platforms explained their products.</p>
+        <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Once I had that foundation, I could design with the user's needs in mind rather than designing around assumptions.</p>
+        <p style="margin:0;max-width:44ch;padding-left:16px;border-left:2px solid #6B4E9B;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:19px;line-height:1.4;letter-spacing:-0.02em;color:#17181A;margin-top:6px">The work got better once I stopped trying to sound like I already knew the space.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0 0 14px;max-width:34ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">What I got wrong</p>
+        <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.65;color:#4E4C47">I designed dark mode only, and I was confident about it. Developers had told me directly that it was easier to read, and the reasoning was sound. Usability testing showed I had solved the wrong problem. They did not want a better default, they wanted control, because the right theme changes with the room and the hour and the person.</p>
+        <p style="margin:0;max-width:44ch;padding-left:16px;border-left:2px solid #6B4E9B;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:19px;line-height:1.4;letter-spacing:-0.02em;color:#17181A;margin-top:6px">I had treated a preference as a finding.</p>
+        <p style="margin:0;max-width:56ch;font-size:15.5px;line-height:1.65;color:#4E4C47;margin-top:6px">Now, before designing around something someone tells me, I ask whether it is actually a constraint or simply a preference.</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <section style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;padding:clamp(40px,6vh,72px) 0">
+    <div>
+      <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Next</p>
+      <a href="TACC Case Study.dc.html" style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">Turning public-health simulations into a playable experience →</a>
+    </div>
+    <a href="mailto:skancharla7@utexas.edu" style="padding:13px 22px;border-radius:999px;background:#17181A;color:#FFFFFF;font-size:14px;font-weight:500" style-hover="background:#2E3033">Get in touch</a>
+  </section>
+
+  <footer style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:28px 0 48px;border-top:1px solid #E9E8EB;font-size:14px;letter-spacing:-.01em;color:#6E6C66">
+    <span>Shreya · Human-Centered Designer</span>
+    <a href="Portfolio.dc.html">Back to work</a>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() {
+    requestAnimationFrame(() => this._initRail());
+    this._t2 = setTimeout(() => this._initRail(), 800);
+    import('./lightbox.js').then(m => m.initLightbox(document)).catch(() => {});
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const setup = () => {
+      const els = document.querySelectorAll('[data-reveal]:not([data-revealed])');
+      if (!els.length) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.04 });
+      els.forEach((el) => {
+        el.setAttribute('data-revealed', '');
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(14px)';
+        el.style.transition = 'opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1)';
+        io.observe(el);
+      });
+    };
+    requestAnimationFrame(setup);
+    this._t = setTimeout(setup, 900);
+  }
+
+  _initRail() {
+    const links = Array.from(document.querySelectorAll('#rail a[data-rail]'));
+    if (!links.length) return;
+    const pairs = links.map((a) => {
+      const t = document.getElementById(a.getAttribute('data-rail'));
+      return { a, sec: t && (t.closest('section') || t.closest('header') || t) };
+    }).filter((p) => p.sec);
+    if (!pairs.length) return;
+    const paint = (active) => pairs.forEach(({ a, sec }) => {
+      const on = sec === active;
+      if (on) a.setAttribute('data-active', ''); else a.removeAttribute('data-active');
+      a.style.color = on ? '#17181A' : '';
+      const tick = a.querySelector('[data-tick]');
+      tick.style.width = on ? '26px' : '14px';
+      tick.style.background = on ? '#17181A' : '#D6D3D8';
+    });
+    const pick = () => {
+      let cur = pairs[0].sec;
+      const line = window.innerHeight * 0.32;
+      pairs.forEach(({ sec }) => { if (sec.getBoundingClientRect().top <= line) cur = sec; });
+      paint(cur);
+    };
+    if (this._pick) { window.removeEventListener('scroll', this._pick); window.removeEventListener('resize', this._pick); }
+    this._pick = pick;
+    window.addEventListener('scroll', pick, { passive: true });
+    window.addEventListener('resize', pick);
+    pick();
+  }
+
+  componentWillUnmount() { clearTimeout(this._t); clearTimeout(this._t2); if (this._pick) { window.removeEventListener('scroll', this._pick); window.removeEventListener('resize', this._pick); } }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
