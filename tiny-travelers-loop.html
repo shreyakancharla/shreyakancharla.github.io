@@ -7,13 +7,13 @@ body{font-family:'Nunito Sans',sans-serif;background:#EADCB9;color:#2A1F18;displ
 a{color:#A8154B}a:hover{color:#780F36}
 .wrap{width:100%;display:flex;flex-direction:column}
 .frame{overflow:hidden;background:#F5ECD7}
-.stage{position:relative;aspect-ratio:8/5;background:#EADCB9}
+.stage{position:relative;aspect-ratio:8/5;background:#EADCB9;container-type:inline-size}
 canvas{display:block;width:100%;height:100%}
-.tray{position:absolute;width:82px;background:#FFF8EE;border:1.5px solid #C8A96E;border-radius:8px;padding:4px;display:flex;flex-direction:column;gap:3px}
-.tray-lbl{font-size:6px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#A08A66;text-align:center}
-.tray.tl{top:9px;left:9px}.tray.tr{top:9px;right:9px}.tray.bl{bottom:9px;left:9px}.tray.br{bottom:9px;right:9px}
-.chip{display:flex;align-items:center;gap:3px;border-radius:5px;padding:3px 4px;font-family:'Nunito',sans-serif;font-size:7.5px;font-weight:800;transition:transform .18s ease,box-shadow .18s ease,opacity .3s ease}
-.chip .ic{font-size:8.5px;line-height:1}
+.tray{position:absolute;width:min(82px,15cqw);background:#FFF8EE;border:1px solid #C8A96E;border-radius:min(8px,1.5cqw);padding:min(4px,.8cqw);display:flex;flex-direction:column;gap:min(3px,.6cqw)}
+.tray-lbl{font-size:min(6px,1.15cqw);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#A08A66;text-align:center}
+.tray.tl{top:1.6cqw;left:1.6cqw}.tray.tr{top:1.6cqw;right:1.6cqw}.tray.bl{bottom:1.6cqw;left:1.6cqw}.tray.br{bottom:1.6cqw;right:1.6cqw}
+.chip{display:flex;align-items:center;gap:min(3px,.6cqw);border-radius:min(5px,1cqw);padding:min(3px,.6cqw) min(4px,.8cqw);font-family:'Nunito',sans-serif;font-size:min(7.5px,1.45cqw);font-weight:800;transition:transform .18s ease,box-shadow .18s ease,opacity .3s ease}
+.chip .ic{font-size:min(8.5px,1.6cqw);line-height:1}
 .chip .nm{flex:1;text-align:left}
 .chip .ct{font-size:8.5px;background:rgba(0,0,0,.13);border-radius:4px;padding:1px 4px}
 .chip.bubble{background:#AED6F1;color:#134A6B}.chip.armour{background:#F9E49A;color:#6B5606}
