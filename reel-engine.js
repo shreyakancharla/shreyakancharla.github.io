@@ -49,6 +49,18 @@
     bar.style.cssText='position:fixed;left:0;top:0;height:5px;width:0;background:#d9b45c;transition:width 300ms linear;';
     [ring,cursor,caption,bar].forEach(function(n){ root.appendChild(n); });
     document.body.appendChild(root);
+    var pp=document.createElement('button');
+    pp.type='button';
+    pp.id='reel-pause';
+    pp.style.cssText='position:fixed;right:12px;bottom:12px;z-index:9100;pointer-events:auto;min-height:34px;padding:8px 14px;border:3px solid #0e0805;border-radius:0;background:#f0e6cf;color:#1a1206;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 #0e0805;';
+    function sync(){ pp.textContent=st8.on?'Pause reel':'Play reel'; pp.setAttribute('aria-pressed',String(!st8.on)); }
+    pp.addEventListener('click',function(){
+      if(st8.on){ st8.on=false; clearTimers(); }
+      else { st8.on=true; runStep(); }
+      sync();
+    });
+    sync();
+    document.body.appendChild(pp);
   }
 
   function placeCaption(){

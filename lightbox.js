@@ -45,6 +45,17 @@ export function initLightbox(root = document) {
   back.addEventListener('click', e => { if (e.target === back || e.target === stage) hide(); });
   close.addEventListener('click', hide);
   doc.addEventListener('keydown', e => { if (e.key === 'Escape' && back.style.display === 'flex') hide(); });
+  // Trap Tab inside the dialog while it is open.
+  back.addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || back.style.display !== 'flex') return;
+    const focusables = [close].concat(
+      [].slice.call(stage.querySelectorAll('a[href],button,iframe,[tabindex]:not([tabindex="-1"])'))
+    );
+    if (!focusables.length) return;
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && doc.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && doc.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 
   const FIT = 'max-width:100%;max-height:calc(100vh - clamp(32px,8vw,112px));width:auto;height:auto;object-fit:contain;border-radius:10px;display:block;background:#fff';
 
@@ -109,6 +120,37 @@ export function initLightbox(root = document) {
     openImage(src, img.alt);
   });
 
+  // Keyboard equivalent of the click-to-zoom: every zoomable image is a button.
+  function openFor(el) {
+    if (el.tagName === 'IMAGE-SLOT') {
+      const inner = el.shadowRoot && el.shadowRoot.querySelector('img');
+      const src = (inner && (inner.currentSrc || inner.src)) || el.getAttribute('src');
+      if (src) openImage(src, (inner && inner.alt) || el.getAttribute('placeholder') || '');
+      return;
+    }
+    const src = el.currentSrc || el.src;
+    if (src) openImage(src, el.alt);
+  }
+  function tagImages() {
+    doc.querySelectorAll('img, image-slot').forEach(el => {
+      if (el.__lbKey || el.hasAttribute('data-no-zoom')) return;
+      if (!eligible(el) || (el.closest && el.closest('a'))) return;
+      if (el.tagName === 'IMG' && !el.alt && el.closest('a')) return;
+      el.__lbKey = true;
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      const name = el.tagName === 'IMG' ? el.alt : (el.getAttribute('placeholder') || '');
+      el.setAttribute('aria-label', name ? 'View full size: ' + name : 'View image full size');
+    });
+  }
+  doc.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const el = e.target;
+    if (!el || !el.__lbKey) return;
+    e.preventDefault();
+    openFor(el);
+  });
+
   // Iframes can't receive outside clicks — give each an expand control.
   function tagFrames() {
     doc.querySelectorAll('iframe').forEach(f => {
@@ -133,12 +175,15 @@ export function initLightbox(root = document) {
     });
   }
   tagFrames();
-  const mo = new MutationObserver(() => tagFrames());
+  tagImages();
+  const mo = new MutationObserver(() => { tagFrames(); tagImages(); });
   mo.observe(doc.body, { childList: true, subtree: true });
 
-  // Cursor affordance on zoomable images
+  // Cursor affordance on zoomable images, and an authored focus ring for
+  // everything this file makes keyboard-reachable.
   const style = doc.createElement('style');
-  style.textContent = 'img:not([data-no-zoom]):not(nav img), image-slot:not([data-no-zoom]) { cursor: zoom-in; } a img { cursor: pointer; }';
+  style.textContent = 'img:not([data-no-zoom]):not(nav img), image-slot:not([data-no-zoom]) { cursor: zoom-in; } a img { cursor: pointer; }'
+    + '[role="button"][tabindex="0"]:focus-visible, [role="group"][tabindex="0"]:focus-visible { outline: 2px solid #6B4E9B; outline-offset: 2px; }';
   doc.head.appendChild(style);
 
   doc.__lbInit = { hide, openImage, openFrame };
