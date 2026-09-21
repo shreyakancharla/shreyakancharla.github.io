@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  [data-shell] { --rail: 0px; }
+  body { margin: 0; background: #FFFFFF; background-image: linear-gradient(178deg, #F7F4F8 0%, #FCFBFC 34%, #FFFFFF 62%); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%; color: #17181A; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #17181A; text-decoration: none; }
+  a:hover { color: #57554F; }
+  ::selection { background: #EFE9F8; }
+  @media (max-width: 560px) { [data-hide-sm] { display: none !important; } [data-brandline] { font-size: 18px !important; } }
+  #rail { display: none; }
+  #rail a { color: #6E6C66; }
+  #rail a:hover { color: #17181A; }
+  #rail a:hover [data-tick] { background: #17181A; }
+  #rail [data-label] { display: none; opacity: 0; transform: translateX(-4px); transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.3,1); }
+  @media (min-width: 620px) {
+    #rail { display: flex; }
+    [data-shell] { --rail: 46px; padding-left: calc(46px + clamp(20px,4vw,56px)) !important; }
+  }
+  @keyframes tacc-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes tacc-spin { to { transform: rotate(360deg); } }
+  @keyframes tacc-pulse { 0%,100% { transform: scale(1); opacity: .95; } 50% { transform: scale(1.05); opacity: .65; } }
+  @keyframes tacc-radiate { 0% { transform: scale(.9); opacity: .8; } 100% { transform: scale(1.3); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    [data-anim] { animation: none !important; }
+  }
+  @media (min-width: 620px) and (max-width: 1551.98px) {
+    #rail a { position: relative; }
+    #rail [data-label] { display: block; position: absolute; left: 26px; top: 50%; opacity: 0; transform: translate(-4px, -50%); padding: 5px 10px; border-radius: 7px; background: #17181A; color: #FBFBF9; font-size: 11.5px; pointer-events: none; box-shadow: 0 8px 20px -12px rgba(23,24,26,.6); }
+    #rail a:hover [data-label], #rail a:focus-visible [data-label] { opacity: 1; transform: translate(0, -50%); }
+  }
+  @media (min-width: 1180px) {
+    #rail { left: calc(50% - 586px) !important; }
+    [data-shell] { --rail: 0px; padding-left: clamp(20px,4vw,56px) !important; }
+  }
+  @media (min-width: 1552px) {
+    #rail { width: 212px !important; left: calc(50% - 776px) !important; }
+    #rail [data-label] { display: block; }
+    #rail a[data-active] [data-label] { opacity: 1; transform: none; color: #17181A; }
+    #rail:hover [data-label], #rail:focus-within [data-label] { opacity: 1; transform: none; }
+  }
+
+</style>
+</helmet>
+
+
+  <nav id="rail" aria-label="Sections" style="position:fixed;top:50%;transform:translateY(-50%);left:max(12px, calc(50% - 540px));width:26px;flex-direction:column;gap:2px;z-index:9">
+    
+    <a href="#s1" data-rail="s1" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">01 The Work</span>
+    </a>
+    <a href="#s2" data-rail="s2" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">02 The Brief</span>
+    </a>
+    <a href="#s3" data-rail="s3" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">03 The Problem</span>
+    </a>
+    <a href="#s4" data-rail="s4" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">04 What I Learned</span>
+    </a>
+    <a href="#s5" data-rail="s5" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">05 Key design moments</span>
+    </a>
+    <a href="#s6" data-rail="s6" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">06 The Handoff</span>
+    </a>
+    <a href="#s7" data-rail="s7" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">07 What I Measured</span>
+    </a>
+    <a href="#s8" data-rail="s8" style="display:flex;align-items:center;gap:14px;min-height:22px">
+      <span data-tick="" style="flex:0 0 auto;width:14px;height:1px;background:#D6D3D8;transition:width .3s cubic-bezier(.2,.7,.3,1), background .3s"></span>
+      <span data-label="" style="white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;line-height:1.3">08 What I'd Do Differently</span>
+    </a>
+  </nav>
+
+<div data-shell="" style="max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+
+  <nav style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid #E9E8EB;position:sticky;top:0;background:rgba(250,248,251,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="index.html#work" aria-label="Other case studies" style="display:inline-flex;align-items:center;gap:7px;padding:7px 13px 7px 11px;margin-right:2px;border:1px solid #E1DEE6;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-.01em;color:#4E4C47;background:#FFFFFF" style-hover="background:#F6F1F8;color:#5B4187;borderColor:#D8CDE4"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>Other case studies</a>
+      <a href="index.html" style="font-size:14px;letter-spacing:-.01em;font-weight:700">Shreya</a>
+      <span data-brandline="" style="font-family:Caveat,cursive;font-size:22px;font-weight:600;letter-spacing:0;line-height:1;color:#6B4E9B;transform:translateY(1px)">Human-Centered Designer</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:26px;font-size:14px;letter-spacing:-.01em;font-weight:500">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="https://docs.google.com/document/d/1oUWtZNwBcNCkYKSSwn7upzmY2ENZkqafltgQavu4DFg/edit?usp=sharing" target="_blank" rel="noopener">Resume</a>
+      <a href="mailto:skancharla7@utexas.edu">Contact</a>
+    </div>
+  </nav>
+
+  <header style="padding:clamp(52px,10vh,112px) 0 clamp(32px,5vh,56px)">
+    <p style="margin:0 0 26px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s1">01 — The Work</p>
+    <h1 style="margin:0;max-width:26ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:-0.035em;text-wrap:pretty">Turning public-health simulations into a playable experience</h1>
+    <p style="margin:30px 0 0;max-width:54ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Two exhibits for UT Austin's visitor center. The audience runs from kids to professors, nobody reads instructions, and the hardest constraint turned out to be how far a person can reach.</p>
+  </header>
+
+  <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+    <figure style="margin:0 0 clamp(44px,7vh,88px)">
+      <div style="position:relative;aspect-ratio:16/9;background:#F5F4F7;border-radius:16px;overflow:hidden">
+        <img src="tacc-cover.png" alt="Four people standing around the 90-inch touch table, Tiny Travelers running on the left half and Detective Doc on the right" style="display:block;width:100%;height:100%;object-fit:cover">
+      </div>
+    </figure>
+  </sc-if>
+
+  <section style="padding:0 0 clamp(48px,8vh,96px);border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s2">02 — The Brief</p>
+    <div style="display:flex;flex-direction:column;gap:14px;padding-left:clamp(16px,2vw,24px);border-left:2px solid #B0511A">
+      <p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B0511A">Role — UX Designer and Researcher, UT Austin</p>
+      <p style="margin:0;max-width:46ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(18px,2vw,23px);line-height:1.4;letter-spacing:-0.02em;color:#17181A;text-wrap:pretty">I owned the game experience for two exhibits: the rules of play, the screen layout and what a visitor does in a turn.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(20px,3vw,40px);margin-top:clamp(28px,5vh,44px)">
+      <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B0511A">Outcome</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Detective Doc approved, ready for animation</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B0511A">Focus</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Health communication, exhibit design, accessibility</p></div>
+      <div style="display:flex;flex-direction:column;gap:7px;padding-top:13px;border-top:1px solid #EDEBEF"><p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B0511A">Context</p><p style="margin:0;font-size:14.5px;line-height:1.6;color:#4E4C47">Texas Advanced Computing Center, for UT Austin's visitor center.</p></div>
+    </div>
+    <div style="margin-top:clamp(24px,4vh,36px);padding-top:13px;border-top:1px solid #EDEBEF">
+      <p style="margin:0;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B0511A;margin-bottom:14px">Team of four</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:clamp(14px,2vw,28px)">
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:600;color:#B0511A">Shreya Kancharla</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Game experience</span></div>
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Kelly Gaither</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Lead</span></div>
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Gladys Chen</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Developer</span></div>
+        <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14.5px;line-height:1.5;font-weight:400;color:#3F3D39">Francesca Samsel</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Animation</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s3">03 — The Problem</p>
+    <h2 style="margin:0;max-width:30ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em;text-wrap:pretty">How do you make complex simulation data playable?</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:52ch;margin-top:18px">
+      <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47"><b>TACC works with complex datasets that can be used to simulate real-world systems and phenomena</b>. But the data itself isn't easy for a general audience to understand.</p>
+      <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47"><b>The challenge was to translate that complexity into something visitors could interact with and understand through play,</b> rather than asking them to read or interpret the data directly.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:stretch;margin-top:clamp(40px,6vh,72px)">
+      <div style="display:flex;flex-direction:column;padding-top:18px;border-top:1px solid #E9E8EB">
+        <p style="margin:0 0 12px;font-size:13.5px;font-weight:600;letter-spacing:.01em;color:#57554F">Tiny Travelers</p>
+        <p style="margin:0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47"><b>A pandemic simulation.</b> Release a contagion into a map of Austin, use tools to slow it down, watch the city change.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">It runs on the SEIR model, which simulates how infectious diseases spread through a population. People move between neighbourhoods, and the population shifts through healthy, exposed, infected and recovered as they go.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">The tools you place reflect real practices anyone can follow: masks, vaccinations and social distancing.</p>
+        <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:20px;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;background:#F5ECD7"><iframe src="tiny-travelers-loop.html" title="Tiny Travelers — the round, running" loading="lazy" style="display:block;width:100%;aspect-ratio:8/5;border:0"></iframe></div>
+        <p style="margin:10px 0 0;font-size:13px;line-height:1.5;color:#6E6C66">The round, running: the Tiny Traveler moves between hubs while tools fire from the four trays.</p>
+        <div style="display:grid;gap:16px;margin-top:20px">
+          <figure style="margin:0">
+            <div style="aspect-ratio:1778/758;background:#2A1F18;border-radius:12px;overflow:hidden"><img src="tacc-tt-opponent-card.png" alt="Choose your opponent screen" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="margin-top:8px;font-size:13px;line-height:1.5;color:#6E6C66">Choosing an opponent. Each Tiny Traveler carries its own speed and movement traits.</figcaption>
+          </figure>
+          <figure style="margin:0">
+            <div style="aspect-ratio:1820/846;background:#2A1F18;border-radius:12px;overflow:hidden"><img src="tacc-tt-toolbox.png" alt="Your toolbox screen" style="display:block;width:100%;height:100%;object-fit:cover"></div>
+            <figcaption style="margin-top:8px;font-size:13px;line-height:1.5;color:#6E6C66">The toolbox. Stronger tools protect longer, but the tray holds fewer of them.</figcaption>
+          </figure>
+        </div>
+        
+        </sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;padding-top:18px;border-top:1px solid #E9E8EB">
+        <p style="margin:0 0 12px;font-size:13.5px;font-weight:600;letter-spacing:.01em;color:#57554F">Detective Doc</p>
+        <p style="margin:0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">A <b>genetic makeup and environmental habits simulation.</b> Pick a genetic makeup, then find out which everyday habits help or hurt that particular body.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">You play as a detective. Pick a patient's genetic makeup, search their home and daily surroundings, and bag anything that might explain the health problems showing up in their timeline.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Each piece of evidence reveals whether that habit is helping or harming this particular body, and the answer changes depending on the genes you started with.</p>
+        <p style="margin:10px 0 0;max-width:40ch;font-size:15.5px;line-height:1.65;color:#4E4C47">It helps visitors understand that there is no single list of good and bad habits. What protects one body can put another at risk.</p>
+        <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:20px;border:1px solid #E9E8EB;border-radius:12px;overflow:hidden;background:#0a0604"><iframe src="gameplay-reel.html" title="Detective Doc — gameplay reel" loading="lazy" scrolling="no" style="display:block;width:160%;aspect-ratio:640/530;border:0;transform:scale(.625);transform-origin:top left;margin-bottom:-49.75%"></iframe></div>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.5;color:#6E6C66">The reel, running: choosing a case, searching the environment, and bagging evidence against the patient's genetics.</p>
+        </sc-if>
+      </div>
+    </div>
+
+    <p style="display:flex;flex-wrap:wrap;gap:6px 12px;margin:clamp(20px,3vh,28px) 0 0;padding:14px 0 0 16px;border-left:2px solid #6B4E9B;max-width:70ch;font-size:14px;line-height:1.6;color:#3F3D39"><span style="flex:0 0 auto;font-size:11.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#6B4E9B;padding-top:2px">Note</span><span style="flex: 1 1 320px; min-width: 0; color: #2b2b2d; font-weight: 500; font-size: 16px">This is the final prototype, not the final game or its animation: what a player sees, where each element sits, and the rules of a turn. It was approved and handed to the animation and development teams, who build the finished exhibit from it.</span></p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,4vw,64px);align-items:start;margin-top:clamp(44px,7vh,80px);padding-top:clamp(24px,4vh,40px);border-top:1px solid #E9E8EB">
+      <p style="margin:0;max-width:22ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">Same table, same audience, and the audience is the hard part.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:46ch">
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Kids, students, professors and families all walk up to the same screen.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Nobody reads a tutorial.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Most give it three to five minutes, standing, with strangers crowded around them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s4">04 — What I Learned</p>
+    <p style="margin:0 0 clamp(40px,6vh,72px);max-width:30ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">One round of research. Both exhibits were built on it.</p>
+
+    <div style="padding-top:clamp(28px,4vh,44px);border-top:1px solid #E9E8EB">
+      <p style="margin:0 0 20px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The finding everything else came from</p>
+      <h3 style="margin:0;max-width:22ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em;text-wrap:pretty">People need to see what's happening without being told.</h3>
+      <p style="margin:26px 0 0;max-width:54ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Games work when you can read the situation at a glance. They fail when the meaning is hidden behind text, menus or backstory. And looking clear beats being accurate: a simplified model people understand teaches more than a precise one they don't.</p>
+    </div>
+
+    <div style="margin-top:clamp(44px,7vh,80px);padding-top:clamp(28px,4vh,44px);border-top:1px solid #E9E8EB">
+      <p style="margin:0 0 28px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Where that came from</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">12</p>
+          <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">games studied across tower defense, simulation, sandbox and outbreak genres</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">6</p>
+          <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">UX points checked in each game: how state is shown, where the tools sit, how spread is visualised, tone, first-time use, and how it holds up with several people at once</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">5</p>
+          <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">educators at UT Austin on what keeps a mixed-age group engaged and what loses them</p>
+        </div>
+      </div>
+      <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+        <figure style="margin:clamp(32px,5vh,56px) 0 0">
+          <div style="position:relative;aspect-ratio:3/2;background:#FFFFFF;border:1px solid #E9E8EB;border-radius:16px;overflow:hidden">
+            <img src="tacc-research-board.png" alt="Research board: rows of annotated screenshots from Don't Starve, Triple Match City, Clash Royale, Bloons TD 6, Plants vs Zombies, Pandemic and Toca, each tagged with what it was studied for" style="display:block;width:100%;height:100%;object-fit:contain">
+          </div>
+        </figure>
+      </sc-if>
+      <p style="margin:clamp(28px,4vh,40px) 0 0;max-width:52ch;font-size:15.5px;line-height:1.65;color:#17181A"><br></p>
+    </div>
+
+    <div style="margin-top:clamp(44px,7vh,80px);padding-top:clamp(28px,4vh,44px);border-top:1px solid #E9E8EB;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,5vw,72px);align-items:start">
+      <h3 style="margin:0;max-width:14ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Five rules I built to</h3>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:0 16px">
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">01</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Show the state instantly.</span> <span style="color:#4E4C47">If someone has to read to find out what's happening, it's already failed.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">02</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Ask for as little thinking as possible.</span> <span style="color:#4E4C47">Every extra decision loses people.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">03</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Teach by doing.</span> <span style="color:#4E4C47">Nobody reads the tutorial. They press something and find out.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF">04</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF"><span style="font-weight:600">Never make it frightening.</span> <span style="color:#4E4C47">This is a disease exhibit in a public room with children in it.</span></p>
+        <span style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;color:#6B4E9B;padding:14px 0;border-top:1px solid #EDEBEF;border-bottom:1px solid #EDEBEF">05</span>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;padding:14px 0;border-top:1px solid #EDEBEF;border-bottom:1px solid #EDEBEF"><span style="font-weight:600">Work for a crowd.</span> <span style="color:#4E4C47">Several people, no turns, no waiting.</span></p>
+      </div>
+    </div>
+
+  </section>
+
+  <section data-reveal="" style="padding:clamp(48px,8vh,96px) 0 0">
+    <div style="display:flex;flex-wrap:wrap;gap:24px clamp(28px,5vw,64px)">
+      <p style="flex:0 0 auto;width:150px;margin:0;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s5">05 — Key design moments</p>
+      <h2 style="flex:1 1 420px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.08;letter-spacing:-0.03em">Six decisions</h2>
+    </div>
+  </section>
+
+  <article data-reveal="" style="padding:clamp(40px,6vh,68px) 0 0">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">01</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Splitting the table in two</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6B4E9B;border:1px solid #DED4EC;background:#F7F4FB;border-radius:999px;padding:5px 12px">Both exhibits</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          
+          <span></span><span><b></b></span>
+          
+          <span><p dir="ltr"><b>A 90-inch table creates unreachable zones.</b></p>
+<div dir="ltr"><div dir="ltr"><p>To validate reachability, I created a full-scale paper prototype of the table and tested it with four people of different heights. The physical test exposed a consistent issue: <strong>the center of the table created unreachable zones for shorter users, children, and wheelchair users.</strong></p></div>
+<p dir="ltr"></p></div>
+<p dir="ltr"></p></span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered, not taken</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <p style="margin: 0 0 5px; font-family: 'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif; font-size: 17px; line-height: 1.3; letter-spacing: -0.015em; color: #3F3D39; font-weight: 600">One board across the whole table</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Uses the whole surface, but makes the center difficult for some players to reach.</p>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><span style="font-weight: 500;"><b>Two separate simulations, one per half, instead of one board across the whole table.</b></span><br></span>
+          
+          <span><p dir="auto" data-start="746" data-end="781" class="PDq2pG_selectionAnchorContainer">Everyone gets a board within reach.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="783" data-end="858" data-is-last-node="" data-is-only-node="">Eight tool trays, four per side, so nobody needs to reach across the table.</p></span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <figure style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+        <div style="position:relative;aspect-ratio:53/50;max-width:900px;margin:0 auto;background:#F5F4F7;border-radius:14px">
+          <image-slot id="tacc-reach" src="tacc-reach.png" fit="contain" shape="rounded" radius="14" placeholder="Hand-drawn reach sketches — 90 × 30in table, two halves, reachable areas shaded, the unreachable middle, eight tool trays at the edges"></image-slot>
+        </div>
+      </figure>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">02</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Where the tools live</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6B4E9B;border:1px solid #DED4EC;background:#F7F4FB;border-radius:999px;padding:5px 12px">TINY TRAVELLERS&nbsp;</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F"><b>Splitting the board fixed the reach, but not the tools.<br></b>The controls were still shared, leaving players reaching across the table to access them.</p>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered, not taken</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">One shared set of controls</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Someone always has to reach across the table to get to them.</p>
+          </div>
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Tools in a hidden menu</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">My research ruled this out early: in an exhibit, people tend to use what they can see.</p>
+          </div>
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Tools placed randomly around the table</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Wherever you stand, you would not have access to the same four tools as everyone else.</p>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><p dir="auto" data-start="470" data-end="532" class="PDq2pG_selectionAnchorContainer"><strong data-start="470" data-end="532">Every side of the table has access to the same four tools.</strong><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="534" data-end="650"></p></span>
+          <span>Eight tool trays, four per side, positioned at the edges so players can reach everything without crossing the table.</span>
+          <span>The experience stays consistent, no matter where you stand.</span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:clamp(20px,2.6vh,28px) 0 0">
+        <figure style="margin:0">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Mixed pairings</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#56407E;border:1px solid #56407E;border-radius:999px;padding:3px 9px">Rejected</span>
+          </div>
+          <div style="position:relative;aspect-ratio:5/3;background:#F5F4F7;border-radius:14px"><image-slot id="tacc-m2-random" src="tools-random.png" shape="rounded" radius="14" placeholder="Each tool box holds a different pair of tools"></image-slot></div>
+          <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F">Each tray holds a different pair, so where you stand decides which tools you get.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Mirrored pairings</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B4E9B;border:1px solid #6B4E9B;border-radius:999px;padding:3px 9px">Chosen</span>
+          </div>
+          <div style="position:relative;aspect-ratio:5/3;background:#F5F4F7;border-radius:14px"><image-slot id="tacc-m2-chosen" src="placement-right.png" shape="rounded" radius="14" placeholder="Tool boxes mirrored across the board"></image-slot></div>
+          <figcaption style="margin-top:10px;max-width:46ch;font-size:13.5px;line-height:1.55;color:#57554F">Glove and Space Bubble on one diagonal, Helmet and Armour on the other, so every side reaches all four.</figcaption>
+        </figure>
+      </div>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">03</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Keeping red and green, but never alone</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6B4E9B;border:1px solid #DED4EC;background:#F7F4FB;border-radius:999px;padding:5px 12px">TINY TRAVELLERS</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span><b>Red and green are familiar signals, but colour alone isn't enough.</b></span>
+          <span><p dir="auto" data-start="263" data-end="356" class="PDq2pG_selectionAnchorContainer">Red and green are commonly used to communicate status, making them intuitive for many people.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="358" data-end="496" class="">But colour blindness can make the distinction difficult. And for younger children, colour alone may not communicate what each state means.</p></span>
+          <span><br></span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>Keep red and green, but give every state a second signal.</b></span>
+          <span><p dir="auto" data-start="584" data-end="675" class="PDq2pG_selectionAnchorContainer">Pair colour with an icon, shape, or movement so the meaning doesn't depend on colour alone.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="677" data-end="740"><strong data-start="677" data-end="740">Maintain at least 4.5:1 contrast for important UI elements.</strong></p></span>
+          <span><br></span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <figure style="margin:clamp(20px,2.6vh,28px) 0 0">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px">
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="position:relative;display:grid;place-items:center;height:132px;background:#FBF8F1"><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:74px;height:74px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5ECD7" stroke="#C8A96E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M28 44Q40 50 52 44" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:14px 16px 16px">
+            <span style="align-self:flex-start;font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;background:#F7F2E6;border:1px solid #DCCFAE;color:#3F3D39">Healthy</span>
+            <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Colour</b><span>Cream · low saturation</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Face</b><span>Closed smile, wide eyes</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Shape</b><span>One unbroken ring held close to the body</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Motion</b><span>Slow, even bob</span></div></div>
+          </div>
+        </div>
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="position:relative;display:grid;place-items:center;height:132px;background:#FDFAF0"><div data-anim="" style="position:absolute;width:86px;height:86px;border-radius:50%;border:4px dotted #C79A12;animation:tacc-spin 9s linear infinite"></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:74px;height:74px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5C842" stroke="#A08020" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 46Q40 44 50 46" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:14px 16px 16px">
+            <span style="align-self:flex-start;font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;background:#FDF3D6;border:1px solid #E3CE8E;color:#3F3D39">Exposed</span>
+            <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Colour</b><span>Amber</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Face</b><span>Flat, uncertain mouth</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Shape</b><span>Ring breaks into dots — a target the virus can reach through</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Motion</b><span>Dotted ring turns slowly</span></div></div>
+          </div>
+        </div>
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="position:relative;display:grid;place-items:center;height:132px;background:#FDF5F4"><div data-anim="" style="position:absolute;width:86px;height:86px;border-radius:50%;border:3px solid #C04040;animation:tacc-pulse 1.6s ease-in-out infinite">
+            <div data-anim="" style="position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out infinite"></div>
+            <div data-anim="" style="position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out .8s infinite"></div>
+          </div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:74px;height:74px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#C04040" stroke="#7A2E2E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 48Q40 42 50 48" stroke="#FFE3E3" stroke-width="2.6" fill="none" stroke-linecap="round"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:14px 16px 16px">
+            <span style="align-self:flex-start;font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;background:#FBE4E4;border:1px solid #E0AEAE;color:#3F3D39">Infected</span>
+            <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Colour</b><span>Red</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Face</b><span>Downturned frown</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Shape</b><span>Ring throws off outward waves — something spreading</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Motion</b><span>Waves leave the body and fade out</span></div></div>
+          </div>
+        </div>
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="position:relative;display:grid;place-items:center;height:132px;background:#F4FAF2"><div style="position:absolute;width:86px;height:86px;border-radius:50%;border:3px solid #3A6741"><div style="position:absolute;inset:-11px;border-radius:50%;border:3px solid #6AAA5A"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:74px;height:74px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#6AAA5A" stroke="#3A6741" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M26 43Q40 62 54 43Z" fill="#EAF7E6" stroke="#EAF7E6" stroke-width="2.6" stroke-linejoin="round"></path></svg></div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:14px 16px 16px">
+            <span style="align-self:flex-start;font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;background:#E6F2E2;border:1px solid #B3D6A8;color:#3F3D39">Recovered</span>
+            <div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Colour</b><span>Green</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Face</b><span>Wide open smile</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Shape</b><span>Two layers of ring — protection doubled</span></div><div style="display:flex;gap:9px;font-size:12.5px;line-height:1.5;color:#57554F"><b style="flex:0 0 52px;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Motion</b><span>Both rings settle and hold still</span></div></div>
+          </div>
+        </div>
+          </div>
+          <figcaption style="margin-top:14px;max-width:70ch;font-size:13.5px;line-height:1.55;color:#57554F">Four states, four signals: fill colour, facial expression, and a shape or motion cue.</figcaption>
+        </figure>
+      <figure style="margin:clamp(24px,3vh,36px) 0 0">
+        <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><filter id="tacc-deuter" color-interpolation-filters="linearRGB"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"></feColorMatrix></filter><filter id="tacc-protan" color-interpolation-filters="linearRGB"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"></feColorMatrix></filter></defs></svg>
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="display:grid;grid-template-columns:104px repeat(4,minmax(0,1fr));gap:1px;background:#E9E8EB">
+            <div style="background:#fff"></div>
+            <div style="padding:10px 12px;background:#fff;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Healthy</div>
+            <div style="padding:10px 12px;background:#fff;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Exposed</div>
+            <div style="padding:10px 12px;background:#fff;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Infected</div>
+            <div style="padding:10px 12px;background:#fff;font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Recovered</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:104px repeat(4,minmax(0,1fr));gap:1px;background:#E9E8EB">
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 14px;background:#fff"><span style="font-size:12px;font-weight:600;color:#3F3D39">Full colour</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">As designed</span></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FBF8F1;"><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5ECD7" stroke="#C8A96E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M28 44Q40 50 52 44" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDFAF0;"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:3px dotted #C79A12;animation:tacc-spin 9s linear infinite"></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5C842" stroke="#A08020" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 46Q40 44 50 46" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDF5F4;"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #C04040;animation:tacc-pulse 1.6s ease-in-out infinite"><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out infinite"></div><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out .8s infinite"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#C04040" stroke="#7A2E2E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 48Q40 42 50 48" stroke="#FFE3E3" stroke-width="2.6" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#F4FAF2;"><div style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #3A6741"><div style="position:absolute;inset:-8px;border-radius:50%;border:2.5px solid #6AAA5A"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#6AAA5A" stroke="#3A6741" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M26 43Q40 62 54 43Z" fill="#EAF7E6" stroke="#EAF7E6" stroke-width="2.6" stroke-linejoin="round"></path></svg></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:104px repeat(4,minmax(0,1fr));gap:1px;background:#E9E8EB">
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 14px;background:#fff"><span style="font-size:12px;font-weight:600;color:#3F3D39">Deuteranopia</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Red–green, most common</span></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FBF8F1;filter:url(#tacc-deuter)"><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5ECD7" stroke="#C8A96E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M28 44Q40 50 52 44" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDFAF0;filter:url(#tacc-deuter)"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:3px dotted #C79A12;animation:tacc-spin 9s linear infinite"></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5C842" stroke="#A08020" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 46Q40 44 50 46" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDF5F4;filter:url(#tacc-deuter)"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #C04040;animation:tacc-pulse 1.6s ease-in-out infinite"><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out infinite"></div><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out .8s infinite"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#C04040" stroke="#7A2E2E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 48Q40 42 50 48" stroke="#FFE3E3" stroke-width="2.6" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#F4FAF2;filter:url(#tacc-deuter)"><div style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #3A6741"><div style="position:absolute;inset:-8px;border-radius:50%;border:2.5px solid #6AAA5A"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#6AAA5A" stroke="#3A6741" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M26 43Q40 62 54 43Z" fill="#EAF7E6" stroke="#EAF7E6" stroke-width="2.6" stroke-linejoin="round"></path></svg></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:104px repeat(4,minmax(0,1fr));gap:1px;background:#E9E8EB">
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 14px;background:#fff"><span style="font-size:12px;font-weight:600;color:#3F3D39">Protanopia</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Red-weak</span></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FBF8F1;filter:url(#tacc-protan)"><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5ECD7" stroke="#C8A96E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M28 44Q40 50 52 44" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDFAF0;filter:url(#tacc-protan)"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:3px dotted #C79A12;animation:tacc-spin 9s linear infinite"></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5C842" stroke="#A08020" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 46Q40 44 50 46" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDF5F4;filter:url(#tacc-protan)"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #C04040;animation:tacc-pulse 1.6s ease-in-out infinite"><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out infinite"></div><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out .8s infinite"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#C04040" stroke="#7A2E2E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 48Q40 42 50 48" stroke="#FFE3E3" stroke-width="2.6" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#F4FAF2;filter:url(#tacc-protan)"><div style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #3A6741"><div style="position:absolute;inset:-8px;border-radius:50%;border:2.5px solid #6AAA5A"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#6AAA5A" stroke="#3A6741" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M26 43Q40 62 54 43Z" fill="#EAF7E6" stroke="#EAF7E6" stroke-width="2.6" stroke-linejoin="round"></path></svg></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:104px repeat(4,minmax(0,1fr));gap:1px;background:#E9E8EB">
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 14px;background:#fff"><span style="font-size:12px;font-weight:600;color:#3F3D39">No colour</span><span style="font-size:12.5px;line-height:1.5;color:#6E6C66">Greyscale</span></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FBF8F1;filter:grayscale(1)"><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5ECD7" stroke="#C8A96E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M28 44Q40 50 52 44" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDFAF0;filter:grayscale(1)"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:3px dotted #C79A12;animation:tacc-spin 9s linear infinite"></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#F5C842" stroke="#A08020" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 46Q40 44 50 46" stroke="#5C3D2E" stroke-width="2.4" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#FDF5F4;filter:grayscale(1)"><div data-anim="" style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #C04040;animation:tacc-pulse 1.6s ease-in-out infinite"><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out infinite"></div><div data-anim="" style="position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(192,64,64,.5);animation:tacc-radiate 1.6s ease-out .8s infinite"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#C04040" stroke="#7A2E2E" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M30 48Q40 42 50 48" stroke="#FFE3E3" stroke-width="2.6" fill="none" stroke-linecap="round"></path></svg></div>
+            <div style="position:relative;display:grid;place-items:center;height:96px;background:#F4FAF2;filter:grayscale(1)"><div style="position:absolute;width:62px;height:62px;border-radius:50%;border:2.5px solid #3A6741"><div style="position:absolute;inset:-8px;border-radius:50%;border:2.5px solid #6AAA5A"></div></div><svg data-anim="" viewBox="0 0 80 80" style="position:relative;width:52px;height:52px;animation:tacc-bob 1.8s ease-in-out infinite"><ellipse cx="40" cy="44" rx="30" ry="28" fill="#6AAA5A" stroke="#3A6741" stroke-width="3"></ellipse><circle cx="27" cy="34" r="5.5" fill="#fff"></circle><circle cx="53" cy="34" r="5.5" fill="#fff"></circle><circle cx="29" cy="35" r="3" fill="#3D2B1F"></circle><circle cx="55" cy="35" r="3" fill="#3D2B1F"></circle><path d="M26 43Q40 62 54 43Z" fill="#EAF7E6" stroke="#EAF7E6" stroke-width="2.6" stroke-linejoin="round"></path></svg></div>
+          </div>
+        </div>
+        <figcaption style="margin-top:12px;max-width:70ch;font-size:13.5px;line-height:1.55;color:#57554F">The same four states simulated through dichromat vision, and with colour removed entirely. Shape and motion keep each state legible once the hues collapse.</figcaption>
+      </figure>
+    </sc-if>
+    <p style="margin:clamp(20px,2.6vh,28px) 0 0;max-width:40ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em">The rule I held to: colour never carries meaning by itself.</p>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">04</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">How people actually touch it</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6B4E9B;border:1px solid #DED4EC;background:#F7F4FB;border-radius:999px;padding:5px 12px">TINY TRAVELLERS</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Drag and drop may be intuitive, but it isn't the first interaction people try.<br><br><b>My initial research suggested drag and drop would feel natural for a walk-up audience.</b></p>
+        <div style="margin-top:clamp(16px,2vh,22px);padding-top:clamp(16px,2vh,22px);border-top:1px dashed #DAD8DE">
+          <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">What testing changed</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          
+          <span><p dir="auto" data-start="329" data-end="353" class="PDq2pG_selectionAnchorContainer"><strong data-start="329" data-end="353">People tapped first.</strong><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="355" data-end="437"></p></span>
+          <span><p dir="auto" data-start="355" data-end="437" class="PDq2pG_selectionAnchorContainer">Without instruction, people naturally tapped the tools before trying to drag them.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="439" data-end="535">That made tap the safer starting point, while keeping drag available for people who discover it.</p></span>
+        </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered, not taken</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Drag and drop only</p>
+            <div style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F"><p dir="auto" data-start="593" data-end="698" class="PDq2pG_selectionAnchorContainer">Works once someone understands the interaction, but relies on users discovering the gesture on their own.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p></div>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><span style="font-weight:500"><b>Support both, tap first.</b></span></span>
+          <span>Tap provides a simpler interaction for children and people with lower dexterity, while drag remains available for those who prefer it.</span>
+          <span><p dir="auto" data-start="284" data-end="351" class="PDq2pG_selectionAnchorContainer"><strong data-start="284" data-end="351">Tap a tool, then tap a citizen — or drag it directly onto them.</strong><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="353" data-end="419" data-is-last-node="" data-is-only-node="">Both interactions work, so players can use whichever feels easier.</p></span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <figure style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+        <div style="position:relative;aspect-ratio:7/4;max-width:1100px;margin:0 auto;background:#F5F4F7;border-radius:14px"><image-slot id="tacc-m4" src="tacc-flows.png" fit="contain" shape="rounded" radius="14" placeholder="The tap path and the drag path, step by step"></image-slot></div>
+        <figcaption style="margin-top:10px;max-width:70ch;font-size:13.5px;line-height:1.55;color:#57554F">Both paths end in the same result, so the two never need explaining separately.</figcaption>
+      </figure>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 0;border-top:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">05</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Ethics as a design constraint</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6B4E9B;border:1px solid #DED4EC;background:#F7F4FB;border-radius:999px;padding:5px 12px">Detective Doc</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span><b style="color:#17181A">How do you use real genetic data without turning people into labels?</b></span>
+          <span>Using ethnicity, gender, or age could communicate those patterns, but it could also make demographic categories feel like defining characteristics of an individual.</span>
+          <span><br></span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered, not taken</p>
+        <div>
+          <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Label patients by demographic group</p>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+            <p style="margin: 0">These labels exist in the underlying data and can help explain population-level differences.
+
+But on an individual profile, the label can overshadow the biology.</p>
+            <span><br></span>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>Describe the biology, not the person.</b></span>
+          <span><p dir="auto" data-start="795" data-end="847" class="PDq2pG_selectionAnchorContainer">The data stays the same. <strong data-start="820" data-end="847">Only the labels change.</strong><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="849" data-end="990">Each case is identified by the condition being investigated — blood pressure, blood sugar, cholesterol, insomnia, thyroid, or liver function.</p>
+<p dir="auto" data-start="992" data-end="1065"></p></span>
+          
+          <span><b>Real data. No demographic labels attached to the individual profiles.</b></span>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <div style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(18px,2.4vw,28px);max-width:1360px;margin:0 auto">
+          <figure style="flex:700 1 280px;min-width:0;margin:0">
+            <div style="position:relative;aspect-ratio:175/108;background:#F5F4F7;border-radius:12px"><image-slot id="tacc-m5-rejected" src="tacc-ethics-rejected.png" fit="contain" shape="rounded" radius="12" placeholder="Two patient cards labelled by ethnicity, gender and age"></image-slot></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+              <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Labelled by group</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4F3A80;border:1px solid #4F3A80;border-radius:999px;padding:3px 10px">Rejected</span>
+            </div>
+            <figcaption style="margin:8px 0 0;font-size:14.5px;line-height:1.55;color:#57554F">Demographic labels sit on the profile, so they read as the defining fact about the patient.</figcaption>
+          </figure>
+          <figure style="flex:1188 1 420px;min-width:0;margin:0">
+            <div style="position:relative;aspect-ratio:99/36;background:#F5F4F7;border-radius:12px"><image-slot id="tacc-m5-chosen" src="tacc-ethics-chosen.png" fit="contain" shape="rounded" radius="12" placeholder="The case select, with each file named by its condition"></image-slot></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+              <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Labelled by condition</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:#4F3A80;border-radius:999px;padding:4px 11px">Chosen</span>
+            </div>
+            <figcaption style="margin:8px 0 0;font-size:14.5px;line-height:1.55;color:#57554F">Each file is named by the biology under investigation. The data is unchanged; only the label is.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </sc-if>
+  </article>
+
+  <article data-reveal="" style="padding:clamp(34px,5vh,58px) 0 clamp(48px,8vh,96px);border-top:1px solid #E9E8EB;border-bottom:1px solid #E9E8EB">
+    <div style="display:flex;align-items:baseline;gap:clamp(14px,2vw,22px);flex-wrap:wrap;margin-bottom:clamp(20px,3vh,30px)">
+      <span style="flex:0 0 auto;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;line-height:1;color:#6B4E9B">06</span>
+      <h3 style="flex:1 1 320px;min-width:0;margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em;text-wrap:pretty">Knowing what's touchable</h3>
+      <span style="flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.02em;color:#6B4E9B;border:1px solid #DED4EC;background:#F7F4FB;border-radius:999px;padding:5px 12px">Detective Doc</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start;gap:clamp(14px,1.6vw,20px)">
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">The problem</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#57554F">
+          <span><b style="color:#17181A">Visitors couldn't tell what was interactive.</b></span>
+          <span>30 objects, but only 7 were clues. Without a clear distinction, visitors tapped decoration and assumed nothing worked.</span>
+          <span><p dir="auto" data-start="364" data-end="423" class="PDq2pG_selectionAnchorContainer"><strong data-start="364" data-end="423">Testing showed they also needed to know their progress.</strong><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p></span>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px dashed #C9C7CD;border-radius:12px">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Considered, not taken</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39">Search the whole room</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F">Fun in a timed game, but too much searching for a short, drop-in exhibit.</p>
+          </div>
+          <div>
+            <p style="margin:0 0 5px;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:17px;line-height:1.3;letter-spacing:-0.015em;color:#3F3D39"><span style="color: rgb(87, 85, 79); font-family: &quot;Instrument Sans&quot;, system-ui, sans-serif; font-size: 15.5px;">&nbsp;</span><strong data-start="406" data-end="441" style="color: rgb(87, 85, 79); font-family: &quot;Instrument Sans&quot;, system-ui, sans-serif; font-size: 15.5px;">Marked hotspots + running count</strong><br data-start="441" data-end="444" style="color: rgb(87, 85, 79); font-family: &quot;Instrument Sans&quot;, system-ui, sans-serif; font-size: 15.5px;"></p>
+            <p style="margin:0;font-size:15.5px;line-height:1.65;color:#57554F"><em data-start="444" data-end="563" data-is-last-node="">Shows visitors what they can investigate and how much is left—without making them spend their limited time searching.</em></p>
+          </div>
+        </div>
+      </div>
+      <div style="min-width:0;padding:clamp(20px,2.4vw,28px);border:1px solid #DCD2EC;border-radius:12px;background:#F8F5FC">
+        <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6B4E9B">What I chose</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:15.5px;line-height:1.65;color:#17181A">
+          <span><b>Make clues visible. Make progress clear.</b></span>
+          <span><p dir="auto" data-start="720" data-end="861" class="PDq2pG_selectionAnchorContainer">Magnifiers show what can be investigated; checkmarks show what’s been found. A running <strong data-start="807" data-end="820">3/7 count</strong> tells visitors exactly how much is left.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="863" data-end="916"><strong data-start="863" data-end="916">What can I touch? What have I found? What's left?</strong></p></span>
+          
+          
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ showImages }}" hint-placeholder-val="{{ true }}">
+      <div style="margin:clamp(20px,2.6vh,28px) 0 0;position:relative;left:calc(50% - var(--rail, 0px) / 2);transform:translateX(-50%);width:100vw;max-width:100vw;padding:0 clamp(16px,4vw,56px)">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(18px,2.4vw,28px);max-width:1360px;margin:0 auto">
+          <figure style="flex:784 1 300px;min-width:0;margin:0">
+            <div style="position:relative;aspect-ratio:392/183;background:#F5F4F7;border-radius:12px"><image-slot id="tacc-m6-rejected" src="tacc-touchable-rejected.png" fit="contain" shape="rounded" radius="12" placeholder="The room with no markers and no counter"></image-slot></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+              <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Search the whole room</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4F3A80;border:1px solid #4F3A80;border-radius:999px;padding:3px 10px">Rejected</span>
+            </div>
+            <figcaption style="margin:8px 0 0;font-size:14.5px;line-height:1.55;color:#57554F">Nothing separates clue from decoration, so a tap that does nothing reads as a broken table.</figcaption>
+          </figure>
+          <figure style="flex:1102 1 420px;min-width:0;margin:0">
+            <div style="position:relative;aspect-ratio:551/183;background:#F5F4F7;border-radius:12px"><image-slot id="tacc-m6-chosen" src="tacc-touchable-chosen.png" fit="contain" shape="rounded" radius="12" placeholder="The room with brass magnifiers, an olive tick, 3/7 and the satchel"></image-slot></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+              <span style="font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Marked hotspots + running count</span><span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;background:#4F3A80;border-radius:999px;padding:4px 11px">Chosen</span>
+            </div>
+            <figcaption style="margin:8px 0 0;font-size:14.5px;line-height:1.55;color:#57554F">Brass magnifiers mark what can be searched, olive ticks mark what is bagged, and 3/7 answers how much is left.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </sc-if>
+  </article>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 36px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s6">06 — The Handoff</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:center">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0;max-width:24ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">Detective Doc approved, and written down so the build didn't depend on me.</p>
+        <p style="margin:0;max-width:46ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Before I left I wrote the developer documentation: every component and state, the underlying logic, the animation detail a prototype can't demonstrate, and my open questions with their status.</p>
+      </div>
+      <figure style="margin:0;max-width:440px">
+        <div style="border:1px solid #E9E8EB;border-radius:12px;background:#fff;overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:#FBFAF8">
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Developer handoff</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4E7A4A">Approved</span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">01</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Components and states</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">Every element drawn out with its variants and transitions.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">02</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Underlying logic</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">Genetic profiles, habit weightings and how the timeline responds.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">03</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Animation notes</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">Timing and motion the prototype could not demonstrate.</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:12px 14px;border-top:1px solid #E9E8EB">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.04em;color:#6E6C66;line-height:1.5">04</span>
+            <span><span style="display:block;font-size:13.5px;font-weight:600;color:#3F3D39">Open questions</span><span style="display:block;margin-top:2px;font-size:13px;line-height:1.5;color:#6E6C66">Each one logged with its current status and owner.</span></span>
+          </div>
+        </div>
+        <figcaption style="margin-top:10px;font-size:13px;line-height:1.5;color:#6E6C66">What the handoff document covers.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0;border-bottom:1px solid #E9E8EB">
+    <p style="margin:0 0 28px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s7">07 — What I Measured</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">12</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">games analysed</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">5</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">educators interviewed</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">8</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">people on the reach test</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(32px,3.8vw,48px);line-height:1;letter-spacing:-0.035em">5</p>
+        <p style="margin:0;padding-top:10px;border-top:1px solid #E9E8EB;font-size:13.5px;line-height:1.55;color:#4E4C47">concepts built and rejected before one was approved</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:start;margin-top:clamp(36px,5vh,56px);padding-top:clamp(26px,4vh,40px);border-top:1px solid #E9E8EB">
+      <p style="margin:0;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">What I'd measure next</p>
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:52ch">
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#17181A">Whether a stranger can explain what they learned 30 seconds after walking away.</p>
+        <p style="margin:0;font-size:15.5px;line-height:1.65;color:#4E4C47">Then how long people stay, whether they play again and change their choices, and how often anyone asks a staff member what something means, which would tell me the interface failed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(48px,8vh,96px) 0">
+    <p style="margin:0 0 36px;font-size:17px;font-weight:600;letter-spacing:.01em;color:#6E6C66;scroll-margin-top:110px" id="s8">08 — What I'd Do Differently</p>
+
+    <div style="display:flex;flex-direction:column;gap:clamp(26px,4vh,40px)">
+      <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:clamp(14px,2vw,22px);align-items:start;padding-top:22px;border-top:1px solid #E9E8EB">
+        <span style="font-size:13px;font-weight:600;color:#6E6C66;line-height:1.35">01</span>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <h3 style="margin:0;max-width:26ch;font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.3;letter-spacing:-0.02em;text-wrap:pretty">We tested with participants, not in the space</h3>
+          <p style="margin:0;max-width:52ch;font-size:15.5px;line-height:1.65;color:#4E4C47">Every session ran with recruited participants instead of the visitor centre floor.</p>
+          <div style="display:grid;grid-template-columns:max-content minmax(0,1fr);column-gap:12px;row-gap:8px;max-width:52ch">
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">Why</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">The board is expensive and hard to move, and testing in the centre carried ethical and technical constraints we could not clear in time.</span></div>
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">Cost</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">Environment does the work here: who is watching, who is waiting, how loud the room is.</span></div>
+            <div style="display:contents"><span style="font-size:11.5px;font-weight:600;letter-spacing:.01em;color:#6E6C66;white-space:nowrap">Fix</span><span style="font-size:15.5px;line-height:1.65;color:#4E4C47">Testing in the space would be closer to a social experiment, and would surface findings a recruited session never will.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;padding:clamp(40px,6vh,72px) 0;border-top:1px solid #E9E8EB">
+    <div>
+      <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.01em;color:#6E6C66">Next</p>
+      <a href="apex.html" style="font-family:'Plus Jakarta Sans','Instrument Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,32px);line-height:1.12;letter-spacing:-0.025em">Making complex API documentation easier to use →</a>
+    </div>
+    <a href="mailto:skancharla7@utexas.edu" style="padding:13px 22px;border-radius:999px;background:#17181A;color:#FBFBF9;font-size:14px;font-weight:500" style-hover="background:#2E3033">Get in touch</a>
+  </section>
+
+  <footer style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:28px 0 48px;border-top:1px solid #E9E8EB;font-size:14px;letter-spacing:-.01em;color:#6E6C66">
+    <span>Shreya · Human-Centered Designer</span>
+    <a href="index.html">Back to work</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showImages&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Page&quot;},&quot;stackComparisons&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Page&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() { requestAnimationFrame(() => this._initRail()); this._t = setTimeout(() => this._initRail(), 800); import('./lightbox.js').then(m => m.initLightbox(document)).catch(() => {}); }
+  componentWillUnmount() { clearTimeout(this._t); if (this._pick) { window.removeEventListener('scroll', this._pick); window.removeEventListener('resize', this._pick); } }
+
+  _initRail() {
+    const links = Array.from(document.querySelectorAll('#rail a[data-rail]'));
+    if (!links.length) return;
+    const pairs = links.map((a) => {
+      const t = document.getElementById(a.getAttribute('data-rail'));
+      return { a, sec: t && (t.closest('section') || t.closest('header') || t) };
+    }).filter((p) => p.sec);
+    if (!pairs.length) return;
+    const paint = (active) => pairs.forEach(({ a, sec }) => {
+      const on = sec === active;
+      if (on) a.setAttribute('data-active', ''); else a.removeAttribute('data-active');
+      a.style.color = on ? '#17181A' : '';
+      const tick = a.querySelector('[data-tick]');
+      tick.style.width = on ? '26px' : '14px';
+      tick.style.background = on ? '#17181A' : '#D6D3D8';
+    });
+    const pick = () => {
+      let cur = pairs[0].sec;
+      const line = window.innerHeight * 0.32;
+      pairs.forEach(({ sec }) => { if (sec.getBoundingClientRect().top <= line) cur = sec; });
+      paint(cur);
+    };
+    if (this._pick) { window.removeEventListener('scroll', this._pick); window.removeEventListener('resize', this._pick); }
+    this._pick = pick;
+    window.addEventListener('scroll', pick, { passive: true });
+    window.addEventListener('resize', pick);
+    pick();
+  }
+
+  renderVals() {
+    const stacked = this.props.stackComparisons ?? false;
+    return {
+      showImages: this.props.showImages ?? true,
+      compareCols: stacked ? "minmax(0,1fr)" : "minmax(0,1fr) auto minmax(0,1fr)",
+      arrow: stacked ? "↓" : "→"
+    };
+  }
+}
+</script>
+</body>
+</html>
